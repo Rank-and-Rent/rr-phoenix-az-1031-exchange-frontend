@@ -9,3 +9,4 @@ export function getPropertyTypeBySlug(slug: string): PropertyTypeItem | undefine
   return propertyTypesData.find((propertyType) => propertyType.slug === slug);
 }
 
+

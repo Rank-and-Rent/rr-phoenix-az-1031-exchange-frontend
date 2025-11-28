@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import sgMail from "@sendgrid/mail";
-
-// Initialize SendGrid
-if (process.env.SENDGRID_API_KEY) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-}
+import { getBrand } from '@/lib/brand';
+import { sendCustomerConfirmation, sendInternalNotifications } from '@/lib/email/sendgrid';
 
 async function verifyTurnstile(token: string): Promise<boolean> {
   if (!process.env.TURNSTILE_SECRET_KEY) {
@@ -54,49 +50,14 @@ async function sendToZapier(data: Record<string, string>) {
   }
 }
 
-async function sendEmail(data: Record<string, string>) {
-  if (!process.env.SENDGRID_API_KEY || !process.env.SENDGRID_TO_EMAIL) {
-    console.warn("SendGrid not configured, skipping email");
-    return;
-  }
-
-  const emailContent = Object.entries(data)
-    .map(([key, value]) => `${key}: ${value || "(not provided)"}`)
-    .join("\n");
-
-  const msg = {
-    to: process.env.SENDGRID_TO_EMAIL,
-    from: process.env.SENDGRID_FROM_EMAIL || "noreply@example.com",
-    subject: `New Lead: ${data.projectType || "Contact Form Submission"}`,
-    text: emailContent,
-    html: `
-      <h2>New Lead Submission</h2>
-      <table style="border-collapse: collapse; width: 100%;">
-        ${Object.entries(data)
-          .map(
-            ([key, value]) =>
-              `<tr>
-                <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">${key}</td>
-                <td style="padding: 8px; border: 1px solid #ddd;">${value || "(not provided)"}</td>
-              </tr>`
-          )
-          .join("")}
-      </table>
-    `,
-  };
-
-  try {
-    await sgMail.send(msg);
-  } catch (error) {
-    console.error("SendGrid error:", error);
-    throw error;
-  }
-}
-
 export async function POST(request: NextRequest) {
   try {
-    const formData = await request.formData();
-    const turnstileToken = formData.get("cf-turnstile-response") as string;
+    const contentType = request.headers.get('content-type') || '';
+    const body = contentType.includes('application/json')
+      ? await request.json()
+      : Object.fromEntries((await request.formData()).entries());
+
+    const turnstileToken = body['cf-turnstile-response'] || body.turnstileToken as string;
 
     // Verify Turnstile token
     if (turnstileToken) {
@@ -110,30 +71,75 @@ export async function POST(request: NextRequest) {
     }
 
     // Extract form data
-    const data: Record<string, string> = {
-      name: (formData.get("name") as string) || "",
-      company: (formData.get("company") as string) || "",
-      email: (formData.get("email") as string) || "",
-      phone: (formData.get("phone") as string) || "",
-      projectType: (formData.get("projectType") as string) || "",
-      timeline: (formData.get("timeline") as string) || "",
-      details: (formData.get("details") as string) || "",
-      submittedAt: new Date().toISOString(),
-    };
+    const name = (body.name as string) || "";
+    const company = (body.company as string) || "";
+    const email = (body.email as string) || "";
+    const phone = (body.phone as string) || "";
+    const projectType = (body.projectType as string) || "";
+    const timeline = (body.timeline as string) || "";
+    const details = (body.details as string) || "";
+    const property = (body.property as string) || "";
+    const estimatedCloseDate = (body.estimatedCloseDate as string) || "";
+    const city = (body.city as string) || "";
+    const message = (body.message as string) || "";
 
     // Validate required fields
-    if (!data.name || !data.email || !data.phone || !data.projectType) {
+    if (!name || !email || !phone || !projectType) {
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
 
-    // Send email via SendGrid
-    await sendEmail(data);
-
     // Send to Zapier webhook
-    await sendToZapier(data);
+    await sendToZapier({
+      name,
+      company,
+      email,
+      phone,
+      projectType,
+      timeline,
+      details: details || message || "",
+      property: property || "",
+      estimatedCloseDate: estimatedCloseDate || "",
+      city: city || "",
+      submittedAt: new Date().toISOString(),
+    });
+
+    // Send emails via SendGrid template
+    const brand = getBrand();
+    const lead = {
+      name: String(name || ''),
+      email: String(email || ''),
+      phone: phone ? String(phone).replace(/\D/g, '') : undefined,
+      phone_plain: phone ? String(phone).replace(/\D/g, '') : undefined,
+      projectType: String(projectType || '1031 Exchange Project'),
+      property: property ? String(property) : undefined,
+      estimatedCloseDate: estimatedCloseDate ? String(estimatedCloseDate) : undefined,
+      city: city ? String(city) : undefined,
+      company: company ? String(company) : undefined,
+      timeline: timeline ? String(timeline) : undefined,
+      message: message ? String(message) : (details ? String(details) : undefined),
+    };
+
+    const brandWithDate = {
+      ...brand,
+      submitted_date: new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    };
+
+    try {
+      await Promise.all([
+        sendCustomerConfirmation(brandWithDate, lead),
+        sendInternalNotifications(brandWithDate, lead),
+      ]);
+      console.log('SendGrid emails sent successfully to:', email);
+    } catch (error) {
+      console.error("SendGrid email failed", error);
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
@@ -144,4 +150,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-

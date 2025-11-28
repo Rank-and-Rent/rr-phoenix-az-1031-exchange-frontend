@@ -58,3 +58,4 @@ export const propertyTypesData: PropertyTypeItem[] = [
   },
 ];
 
+

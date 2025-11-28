@@ -170,3 +170,4 @@ export const assignments: LayoutAssignments = {
   locations: assignLayoutsRoundRobin(locationsData, locationVariants),
 };
 
+

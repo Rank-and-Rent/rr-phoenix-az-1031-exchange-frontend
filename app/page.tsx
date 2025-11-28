@@ -397,57 +397,11 @@ export default function Page() {
                   <ArrowRightIcon className="h-5 w-5" aria-hidden="true" />
                 </Link>
               </div>
-              <div className="rounded-full bg-[#F5F3EF] px-4 py-3 text-sm text-[#2A2A2A]/80">
-                45 Day identification. 180 Day closing. We help you stay
-                compliant.
-              </div>
-              <div className="flex flex-wrap gap-4">
-                {[
-                  { label: "Property Identification Support", icon: MapPinIcon },
-                  { label: "45-Day Deadline Tracking", icon: ClockIcon },
-                  { label: "Replacement Property Sourcing", icon: SearchIcon },
-                ].map((badge) => (
-                  <div
-                    key={badge.label}
-                    className="flex items-center gap-2 rounded-2xl border border-[#2A2A2A]/10 bg-white px-4 py-2 text-sm text-[#2A2A2A]/80 shadow-sm"
-                  >
-                    <badge.icon className="h-4 w-4 text-[#E6A445]" aria-hidden="true" />
-                    <span className="uppercase tracking-wide">
-                      {badge.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
             </div>
             <div className="relative">
               <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full border border-[#E6A445]/30" />
               <div className="absolute -bottom-6 -left-10 h-32 w-32 rounded-full border border-[#006E7F]/25" />
               <div className="relative overflow-hidden rounded-3xl border border-white/60 bg-gradient-to-br from-[#F5F3EF] via-white to-[#F5F3EF] p-8 shadow-[0_20px_60px_rgba(24,24,24,0.12)]">
-                <div className="space-y-6">
-                  <div className="rounded-full bg-[#006E7F]/10 px-6 py-3 text-center text-sm font-semibold text-[#006E7F]">
-                    45 Day identification. 180 Day closing. We help you stay compliant.
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3 rounded-2xl border border-[#2A2A2A]/10 bg-white/80 px-5 py-4 shadow-sm">
-                      <MapPinIcon className="h-5 w-5 flex-shrink-0 text-[#E6A445]" aria-hidden="true" />
-                      <span className="text-base font-semibold text-[#2A2A2A]">
-                        Property Identification Support
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3 rounded-2xl border border-[#2A2A2A]/10 bg-white/80 px-5 py-4 shadow-sm">
-                      <ClockIcon className="h-5 w-5 flex-shrink-0 text-[#E6A445]" aria-hidden="true" />
-                      <span className="text-base font-semibold text-[#2A2A2A]">
-                        45-Day Deadline Tracking
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3 rounded-2xl border border-[#2A2A2A]/10 bg-white/80 px-5 py-4 shadow-sm">
-                      <SearchIcon className="h-5 w-5 flex-shrink-0 text-[#E6A445]" aria-hidden="true" />
-                      <span className="text-base font-semibold text-[#2A2A2A]">
-                        Replacement Property Sourcing
-                      </span>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
