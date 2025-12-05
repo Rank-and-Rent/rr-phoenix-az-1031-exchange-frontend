@@ -1,10 +1,9 @@
 "use client";
 
-import { Suspense, useEffect, useRef } from "react";
-import { useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
+import { Suspense } from "react";
+import Link from "next/link";
 import { Breadcrumbs } from "@/components/navigation/breadcrumbs";
-import { ContactForm } from "@/components/forms/contact-form";
+import { LeadForm } from "@/components/forms/lead-form";
 import {
   PRIMARY_CITY,
   PRIMARY_STATE_ABBR,
@@ -17,33 +16,7 @@ import {
   OFFICE_ADDRESS_LINE_2,
 } from "@/lib/config";
 
-const fadeInProps = {
-  initial: { opacity: 0, y: 32 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.2 },
-  transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] as const },
-};
-
 function ContactPageContent() {
-  const searchParams = useSearchParams();
-  const formRef = useRef<HTMLDivElement>(null);
-  const projectTypeParam = searchParams.get("projectType");
-
-  useEffect(() => {
-    if (projectTypeParam && formRef.current) {
-      setTimeout(() => {
-        formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-        const projectTypeInput = document.getElementById(
-          "project-type"
-        ) as HTMLInputElement;
-        if (projectTypeInput) {
-          projectTypeInput.focus();
-          projectTypeInput.value = projectTypeParam;
-        }
-      }, 100);
-    }
-  }, [projectTypeParam]);
-
   return (
     <div className="min-h-screen bg-[#F5F3EF]">
       <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-8 sm:px-10 lg:px-16">
@@ -54,9 +27,9 @@ function ContactPageContent() {
           ]}
         />
 
-        <motion.section {...fadeInProps} className="space-y-10 pt-8">
+        <section className="space-y-10 pt-8">
           <header className="max-w-3xl space-y-4">
-            <h1 className="font-playfair text-4xl font-bold text-[#2A2A2A] sm:text-5xl">
+            <h1 className="font-serif text-4xl font-bold text-[#2A2A2A] sm:text-5xl">
               Contact Us
             </h1>
             <p className="text-base text-[#2A2A2A]/75 sm:text-lg">
@@ -66,13 +39,13 @@ function ContactPageContent() {
           </header>
 
           <div className="grid gap-10 lg:grid-cols-2">
-            <div ref={formRef} id="contact-form-section">
-              <ContactForm initialProjectType={projectTypeParam || undefined} />
+            <div id="contact-form-section">
+              <LeadForm />
             </div>
 
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="font-playfair text-2xl font-bold text-[#2A2A2A]">
+                <h2 className="font-serif text-2xl font-bold text-[#2A2A2A]">
                   Get in Touch
                 </h2>
                 <p className="text-base text-[#2A2A2A]/75">
@@ -83,9 +56,7 @@ function ContactPageContent() {
 
               <div className="space-y-4">
                 <div>
-                  <h3 className="font-inter text-lg font-medium text-[#2A2A2A]">
-                    Phone
-                  </h3>
+                  <h3 className="text-lg font-medium text-[#2A2A2A]">Phone</h3>
                   <a
                     href={`tel:${PHONE_NUMBER_URI}`}
                     className="text-base text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
@@ -95,9 +66,7 @@ function ContactPageContent() {
                 </div>
 
                 <div>
-                  <h3 className="font-inter text-lg font-medium text-[#2A2A2A]">
-                    Email
-                  </h3>
+                  <h3 className="text-lg font-medium text-[#2A2A2A]">Email</h3>
                   <a
                     href={`mailto:${SUPPORT_EMAIL}`}
                     className="text-base text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
@@ -107,9 +76,7 @@ function ContactPageContent() {
                 </div>
 
                 <div>
-                  <h3 className="font-inter text-lg font-medium text-[#2A2A2A]">
-                    Hours
-                  </h3>
+                  <h3 className="text-lg font-medium text-[#2A2A2A]">Hours</h3>
                   <p className="text-base text-[#2A2A2A]/75">
                     24 hours a day, seven days a week
                   </p>
@@ -117,7 +84,7 @@ function ContactPageContent() {
               </div>
 
               <div className="rounded-2xl border border-white/70 bg-white/70 p-6 shadow-[0_12px_40px_rgba(24,24,24,0.06)]">
-                <h3 className="font-inter text-lg font-medium text-[#2A2A2A]">
+                <h3 className="text-lg font-medium text-[#2A2A2A]">
                   Office Location
                 </h3>
                 <p className="mt-2 text-sm text-[#2A2A2A]/75">
@@ -125,6 +92,50 @@ function ContactPageContent() {
                   <br />
                   {OFFICE_ADDRESS_LINE_2}
                 </p>
+              </div>
+
+              <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-lg">
+                <h3 className="mb-6 font-serif text-xl font-bold text-[#006E7F]">
+                  Quick Links
+                </h3>
+                <div className="grid gap-3 md:grid-cols-2">
+                  <Link
+                    href="/services"
+                    className="text-[#2A2A2A] hover:text-[#006E7F] transition-colors"
+                  >
+                    View All Services
+                  </Link>
+                  <Link
+                    href="/locations"
+                    className="text-[#2A2A2A] hover:text-[#006E7F] transition-colors"
+                  >
+                    Explore Locations
+                  </Link>
+                  <Link
+                    href="/about"
+                    className="text-[#2A2A2A] hover:text-[#006E7F] transition-colors"
+                  >
+                    About Our Process
+                  </Link>
+                  <Link
+                    href="/blog"
+                    className="text-[#2A2A2A] hover:text-[#006E7F] transition-colors"
+                  >
+                    1031 Exchange Blog
+                  </Link>
+                  <Link
+                    href="/tools"
+                    className="text-[#2A2A2A] hover:text-[#006E7F] transition-colors"
+                  >
+                    Exchange Tools
+                  </Link>
+                  <Link
+                    href="/property-types"
+                    className="text-[#2A2A2A] hover:text-[#006E7F] transition-colors"
+                  >
+                    Property Types
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -142,7 +153,7 @@ function ContactPageContent() {
               className="absolute inset-0"
             />
           </div>
-        </motion.section>
+        </section>
       </div>
 
       <script
@@ -180,4 +191,3 @@ export default function ContactPage() {
     </Suspense>
   );
 }
-
