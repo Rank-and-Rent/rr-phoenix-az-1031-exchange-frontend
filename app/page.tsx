@@ -398,12 +398,6 @@ export default function Page() {
                 </Link>
               </div>
             </div>
-            <div className="relative">
-              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full border border-[#E6A445]/30" />
-              <div className="absolute -bottom-6 -left-10 h-32 w-32 rounded-full border border-[#006E7F]/25" />
-              <div className="relative overflow-hidden rounded-3xl border border-white/60 bg-gradient-to-br from-[#F5F3EF] via-white to-[#F5F3EF] p-8 shadow-[0_20px_60px_rgba(24,24,24,0.12)]">
-              </div>
-            </div>
           </div>
         </section>
 
