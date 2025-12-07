@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { PHONE_NUMBER, PHONE_NUMBER_URI } from "@/lib/config";
 import { ArrowRightIcon, PhoneIcon, XIcon } from "../icons";
 
@@ -10,6 +11,7 @@ const STORAGE_KEY = "sticky-cta-collapsed";
 export function StickyCTA() {
   const [visible, setVisible] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     // Check if user previously collapsed it
@@ -37,7 +39,7 @@ export function StickyCTA() {
     }
   };
 
-  if (collapsed) {
+  if (collapsed || pathname === "/contact") {
     return null;
   }
 
@@ -84,4 +86,3 @@ export function StickyCTA() {
     </div>
   );
 }
-

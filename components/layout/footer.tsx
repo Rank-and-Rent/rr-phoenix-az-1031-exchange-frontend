@@ -22,137 +22,60 @@ const footerServices = getAllServices();
 export function Footer() {
   return (
     <footer className="border-t border-[#E6A445]/30 bg-white">
-      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:px-10 lg:grid-cols-6 lg:px-16">
-        <div className="lg:col-span-2">
-          <div className="space-y-4">
+      {/* Main Footer Content */}
+      <div className="mx-auto max-w-7xl px-6 py-16 sm:px-10 lg:px-16">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-5 lg:gap-8">
+          
+          {/* Column 1: Brand & Contact */}
+          <div className="lg:col-span-1">
             <h2 className="text-2xl font-semibold text-[#2A2A2A]">{COMPANY_NAME}</h2>
-            <p className="text-sm text-[#2A2A2A]/75">
+            <p className="mt-4 text-sm leading-6 text-[#2A2A2A]/75">
               Precision-focused 1031 exchange guidance supporting investors across {PRIMARY_CITY},{" "}
               {PRIMARY_STATE_ABBR} with deadline discipline, replacement sourcing, and advisor coordination.
             </p>
-            <div className="space-y-1 text-sm text-[#2A2A2A]/80">
+            <div className="mt-6 space-y-2 text-sm text-[#2A2A2A]/80">
               <p>
-                Phone:{" "}
+                <span className="font-semibold">Phone:</span>{" "}
                 <Link
                   href={`tel:${PHONE_NUMBER_URI}`}
-                  className="font-semibold text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                  className="hover:text-[#006E7F] hover:underline"
                 >
                   {PHONE_NUMBER}
                 </Link>
               </p>
               <p>
-                Email:{" "}
+                <span className="font-semibold">Email:</span>{" "}
                 <Link
                   href={`mailto:${SUPPORT_EMAIL}`}
-                  className="font-semibold text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                  className="hover:text-[#006E7F] hover:underline"
                 >
                   {SUPPORT_EMAIL}
                 </Link>
               </p>
-              <p>Hours: {OFFICE_HOURS}</p>
+              <p><span className="font-semibold">Hours:</span> {OFFICE_HOURS}</p>
             </div>
-            {HAS_STAFFED_OFFICE ? (
-              <address className="not-italic rounded-2xl border border-[#2A2A2A]/10 bg-[#F5F3EF]/60 p-4 text-sm text-[#2A2A2A]/80">
-                <p className="font-semibold text-[#2A2A2A]">Phoenix Office</p>
-                <p>{OFFICE_ADDRESS_LINE_1}</p>
-                <p>{OFFICE_ADDRESS_LINE_2}</p>
-              </address>
-            ) : (
-              <p className="rounded-2xl border border-[#2A2A2A]/10 bg-[#F5F3EF]/60 p-4 text-sm text-[#2A2A2A]/80">
-                Advisory services delivered virtually across Arizona with scheduled in-person consultations on request.
-              </p>
-            )}
-            <div className="flex flex-wrap gap-3">
+            <div className="mt-6 flex gap-4">
               {SOCIAL_LINKS.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="text-sm font-medium text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                  className="text-sm font-medium text-[#006E7F] hover:text-[#005563] hover:underline"
                 >
                   {item.label}
                 </Link>
               ))}
             </div>
           </div>
-        </div>
-        <div className="space-y-6">
+
+          {/* Column 2: Services */}
           <div>
-            <h3 className="text-lg font-semibold text-[#2A2A2A]">Quick Links</h3>
-            <ul className="mt-3 space-y-2 text-sm text-[#2A2A2A]/75">
-              <li>
-                <Link
-                  href="/services"
-                  className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/locations"
-                  className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  Locations
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy"
-                  className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms"
-                  className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/sitemap.xml"
-                  className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  Sitemap
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-[#2A2A2A]">Services</h3>
-            <ul className="mt-3 space-y-2 text-sm text-[#2A2A2A]/75">
-              {footerServices.map((service) => (
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#2A2A2A]">Services</h3>
+            <ul className="mt-4 space-y-3">
+              {footerServices.slice(0, 6).map((service) => (
                 <li key={service.slug}>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                    className="text-sm text-[#2A2A2A]/70 transition hover:text-[#006E7F]"
                   >
                     {service.name}
                   </Link>
@@ -161,60 +84,23 @@ export function Footer() {
               <li>
                 <Link
                   href="/services"
-                  className="font-semibold text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                  className="text-sm font-medium text-[#006E7F] hover:underline"
                 >
-                  View all services
+                  View all services &rarr;
                 </Link>
               </li>
             </ul>
           </div>
+
+          {/* Column 3: Service Areas */}
           <div>
-            <h3 className="text-lg font-semibold text-[#2A2A2A]">Tools</h3>
-            <ul className="mt-3 space-y-2 text-sm text-[#2A2A2A]/75">
-              <li>
-                <Link
-                  href="/tools/boot-calculator"
-                  className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  Boot Calculator
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/tools/exchange-cost-estimator"
-                  className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  Exchange Cost Estimator
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/tools/identification-rules-checker"
-                  className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  Identification Rules Checker
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/tools"
-                  className="font-semibold text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  View all tools
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-[#2A2A2A]">
-              Service Areas
-            </h3>
-            <ul className="mt-3 space-y-2 text-sm text-[#2A2A2A]/75">
-              {footerLocations.map((location) => (
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#2A2A2A]">Locations</h3>
+            <ul className="mt-4 space-y-3">
+              {footerLocations.slice(0, 6).map((location) => (
                 <li key={location.slug}>
                   <Link
                     href={`/locations/${location.slug}`}
-                    className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                    className="text-sm text-[#2A2A2A]/70 transition hover:text-[#006E7F]"
                   >
                     {location.name}
                   </Link>
@@ -223,48 +109,85 @@ export function Footer() {
               <li>
                 <Link
                   href="/locations"
-                  className="font-semibold text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                  className="text-sm font-medium text-[#006E7F] hover:underline"
                 >
-                  View all locations
+                  View all locations &rarr;
                 </Link>
               </li>
             </ul>
           </div>
-        </div>
-        <div className="space-y-4">
-          <div className="overflow-hidden rounded-2xl border border-[#2A2A2A]/10 shadow-[0_20px_60px_rgba(24,24,24,0.08)]">
-            <iframe
-              title="Phoenix office map"
-              src={GOOGLE_MAP_EMBED}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="h-48 w-full border-0"
-            />
+
+          {/* Column 4: Quick Links & Tools */}
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[#2A2A2A]">Resources</h3>
+            <ul className="mt-4 space-y-3">
+              <li>
+                <Link href="/about" className="text-sm text-[#2A2A2A]/70 transition hover:text-[#006E7F]">About Us</Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-sm text-[#2A2A2A]/70 transition hover:text-[#006E7F]">Contact</Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-sm text-[#2A2A2A]/70 transition hover:text-[#006E7F]">Blog</Link>
+              </li>
+              <li>
+                <Link href="/tools/boot-calculator" className="text-sm text-[#2A2A2A]/70 transition hover:text-[#006E7F]">Boot Calculator</Link>
+              </li>
+              <li>
+                <Link href="/tools/exchange-cost-estimator" className="text-sm text-[#2A2A2A]/70 transition hover:text-[#006E7F]">Cost Estimator</Link>
+              </li>
+              <li>
+                <Link href="/tools/identification-rules-checker" className="text-sm text-[#2A2A2A]/70 transition hover:text-[#006E7F]">Rules Checker</Link>
+              </li>
+              <li>
+                <Link href="/tools" className="text-sm font-medium text-[#006E7F] hover:underline">View all tools &rarr;</Link>
+              </li>
+            </ul>
           </div>
-          <div className="space-y-2 text-xs text-[#2A2A2A]/70">
-            <p>
-              This site helps investors identify potential replacement properties
-              for Section 1031 exchanges.
-            </p>
-            <p>
-              This site is not a Qualified Intermediary, law firm, broker, or CPA.
-            </p>
-            <p>
-              Users should consult a Qualified Intermediary and tax advisor before
-              acting on exchange strategies.
-            </p>
+
+          {/* Column 5: Map & Legal */}
+          <div>
+             <h3 className="text-sm font-semibold uppercase tracking-wider text-[#2A2A2A]">Office</h3>
+             <div className="mt-4 overflow-hidden rounded-xl border border-[#2A2A2A]/10 shadow-sm">
+              <iframe
+                title="Phoenix office map"
+                src={GOOGLE_MAP_EMBED}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-40 w-full border-0"
+              />
+            </div>
+             {HAS_STAFFED_OFFICE ? (
+              <address className="mt-4 not-italic text-sm text-[#2A2A2A]/70">
+                <p>{OFFICE_ADDRESS_LINE_1}</p>
+                <p>{OFFICE_ADDRESS_LINE_2}</p>
+              </address>
+            ) : (
+              <p className="mt-4 text-xs text-[#2A2A2A]/60">
+                Advisory services delivered virtually across Arizona.
+              </p>
+            )}
           </div>
         </div>
       </div>
-      <div className="border-t border-[#E6A445]/30 bg-[#F5F3EF]/70">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-6 text-xs text-[#2A2A2A]/70 sm:flex-row sm:items-center sm:justify-between sm:px-10 lg:px-16">
-          <p>© {new Date().getFullYear()} {COMPANY_NAME}. All rights reserved.</p>
-          <p>
-            Serving {PRIMARY_CITY}, {PRIMARY_STATE_ABBR} and statewide investors.
-          </p>
+
+      {/* Bottom Bar */}
+      <div className="border-t border-[#E6A445]/20 bg-[#F5F3EF]/50">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-6 py-8 text-center text-xs text-[#2A2A2A]/60 sm:flex-row sm:justify-between sm:text-left lg:px-16">
+          <div className="space-y-2 sm:max-w-md">
+            <p>© {new Date().getFullYear()} {COMPANY_NAME}. All rights reserved.</p>
+            <p>
+               This site is not a Qualified Intermediary, law firm, or CPA. 
+               Users should consult professionals before acting.
+            </p>
+          </div>
+          <div className="flex gap-6">
+            <Link href="/privacy" className="hover:text-[#006E7F] hover:underline">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-[#006E7F] hover:underline">Terms of Service</Link>
+            <Link href="/sitemap.xml" className="hover:text-[#006E7F] hover:underline">Sitemap</Link>
+          </div>
         </div>
       </div>
     </footer>
   );
 }
-
