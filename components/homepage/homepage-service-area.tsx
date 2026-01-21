@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -12,9 +12,28 @@ type HomepageServiceAreaProps = {
   locations: Location[];
 };
 
+// Map location slugs to their actual image filenames (with -az suffix and correct extension)
+const locationImageMap: Record<string, string> = {
+  "phoenix": "/locations/1031-exchange-phoenix-az.webp",
+  "scottsdale": "/locations/1031-exchange-scottsdale-az.jpg",
+  "tempe": "/locations/1031-exchange-tempe-az.webp",
+  "mesa": "/locations/1031-exchange-mesa-az.jpg",
+  "chandler": "/locations/1031-exchange-chandler-az.jpg",
+  "gilbert": "/locations/1031-exchange-gilbert-az.jpg",
+  "glendale": "/locations/1031-exchange-glendale-az.jpg",
+  "paradise-valley": "/locations/1031-exchange-north-scottsdale-az.jpg",
+  "goodyear": "/locations/1031-exchange-goodyear-az.webp",
+  "queen-creek": "/locations/1031-exchange-gilbert-az.jpg",
+};
+
+function getLocationImage(slug: string): string {
+  return locationImageMap[slug] || `/locations/1031-exchange-${slug}-az.jpg`;
+}
+
 export function HomepageServiceArea({ locations }: HomepageServiceAreaProps) {
   const router = useRouter();
   const [query, setQuery] = useState("");
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(() => {
     if (!query) {
@@ -25,6 +44,18 @@ export function HomepageServiceArea({ locations }: HomepageServiceAreaProps) {
       location.name.toLowerCase().includes(normalized),
     );
   }, [query, locations]);
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -300, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 300, behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -50,7 +81,10 @@ export function HomepageServiceArea({ locations }: HomepageServiceAreaProps) {
       
       {/* Mansion Global "Explore Top Markets" style - horizontal scroll with city images */}
       <div className="relative -mx-6 lg:-mx-8">
-        <div className="mansion-scroll flex gap-4 overflow-x-auto px-6 pb-4 lg:px-8">
+        <div 
+          ref={scrollContainerRef}
+          className="mansion-scroll flex gap-4 overflow-x-auto px-6 pb-4 lg:px-8"
+        >
           {filtered.slice(0, 8).map((location) => (
             <Link
               key={location.slug}
@@ -60,7 +94,7 @@ export function HomepageServiceArea({ locations }: HomepageServiceAreaProps) {
             >
               {/* Background image */}
               <Image
-                src={`/locations/1031-exchange-${location.slug}.jpg`}
+                src={getLocationImage(location.slug)}
                 alt={location.name}
                 fill
                 className="object-cover transition duration-500 group-hover:scale-105"
@@ -79,10 +113,18 @@ export function HomepageServiceArea({ locations }: HomepageServiceAreaProps) {
         </div>
         
         {/* Carousel navigation arrows */}
-        <button className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white shadow-editorial transition hover:shadow-editorial-hover lg:left-4" aria-label="Previous">
+        <button 
+          onClick={scrollLeft}
+          className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white shadow-editorial transition hover:shadow-editorial-hover lg:left-4" 
+          aria-label="Previous"
+        >
           <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
         </button>
-        <button className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white shadow-editorial transition hover:shadow-editorial-hover lg:right-4" aria-label="Next">
+        <button 
+          onClick={scrollRight}
+          className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white shadow-editorial transition hover:shadow-editorial-hover lg:right-4" 
+          aria-label="Next"
+        >
           <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
         </button>
       </div>

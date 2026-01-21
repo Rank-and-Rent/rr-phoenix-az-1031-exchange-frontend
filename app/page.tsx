@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { services, type Service } from "@/lib/services";
 import { locations } from "@/lib/locations";
-import { getPropertyTypeImageSrc } from "@/lib/utils";
 import {
   ArrowRightIcon,
   CalculatorIcon,
@@ -19,9 +18,9 @@ import {
 } from "@/components/icons";
 import { HomepageServiceGrid } from "@/components/homepage/homepage-service-grid";
 import { HomepageServiceArea } from "@/components/homepage/homepage-service-area";
+import { HomepagePropertyTypes } from "@/components/homepage/homepage-property-types";
 import { DeadlineCalculator } from "@/components/widgets/deadline-calculator";
 import { IdentificationRules } from "@/components/widgets/identification-rules";
-import { IdentificationLetterHelper } from "@/components/widgets/identification-letter-helper";
 import { TimelineTracker } from "@/components/widgets/timeline-tracker";
 import { LeadForm } from "@/components/forms/lead-form";
 import {
@@ -40,18 +39,18 @@ import {
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_DOMAIN),
-  title: "Single Tenant NNN Retail for 1031 Exchange | Net Lease Property Listings",
+  title: "1031 Exchange Services Phoenix AZ | Qualified Intermediary Coordination",
   description:
-    "Find high-quality single tenant NNN retail and shopping center properties nationwide for your 1031 exchange. Hands-off ownership with predictable income. Fast property identification and deal flow.",
+    "Expert 1031 exchange services in Phoenix, Arizona. Property identification, qualified intermediary coordination, deadline management, and tax deferral guidance for all property types.",
   keywords: [
-    "single tenant retail for sale",
-    "NNN investment property for sale",
-    "net lease property listings",
-    "1031 exchange NNN properties",
-    "single tenant net lease",
-    "triple net retail",
-    "sale leaseback",
-    "ground lease",
+    "1031 exchange Phoenix",
+    "qualified intermediary Arizona",
+    "1031 exchange services",
+    "property identification",
+    "tax deferred exchange",
+    "like-kind exchange",
+    "1031 exchange deadline",
+    "replacement property",
   ],
   alternates: {
     canonical: SITE_DOMAIN,
@@ -59,9 +58,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_DOMAIN,
-    title: "Single Tenant NNN Retail for 1031 Exchange | Net Lease Property Listings",
+    title: "1031 Exchange Services Phoenix AZ | Qualified Intermediary Coordination",
     description:
-      "Find high-quality single tenant NNN retail and shopping center properties nationwide for your 1031 exchange. Hands-off ownership with predictable income.",
+      "Expert 1031 exchange services in Phoenix, Arizona. Property identification, qualified intermediary coordination, and tax deferral guidance for all property types.",
     siteName: COMPANY_NAME,
     images: [
       {
@@ -74,9 +73,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Single Tenant NNN Retail for 1031 Exchange | Net Lease Property Listings",
+    title: "1031 Exchange Services Phoenix AZ | Qualified Intermediary Coordination",
     description:
-      "Find high-quality single tenant NNN retail and shopping center properties nationwide for your 1031 exchange. Hands-off ownership with predictable income.",
+      "Expert 1031 exchange services in Phoenix, Arizona. Property identification, qualified intermediary coordination, and tax deferral guidance for all property types.",
     images: [`${SITE_DOMAIN}/images/blog/desert-modern.svg`],
   },
   other: {
@@ -97,7 +96,6 @@ const highlightedServices = highlightedServiceSlugs
   .map((slug) => services.find((service) => service.slug === slug))
   .filter((service): service is Service => Boolean(service));
 
-const footerLocations = locations.slice(0, 6);
 
 type PropertyType = {
   title: string;
@@ -107,73 +105,73 @@ type PropertyType = {
 
 const propertyTypes: PropertyType[] = [
   {
-    title: "Single Tenant NNN Retail",
+    title: "Multifamily",
     benefit:
-      "Triple-net retail properties with credit tenants. Tenant handles taxes, insurance, and maintenance for truly hands-off ownership.",
-    slug: "single-tenant-nnn-retail",
+      "Apartment buildings and residential complexes. Steady rental income with potential for value-add improvements and long-term appreciation.",
+    slug: "multifamily",
   },
   {
-    title: "Shopping Centers",
+    title: "Industrial & Warehouse",
     benefit:
-      "NNN shopping centers with essential retail tenants. Predictable cash flow from convenience, pharmacy, and QSR brands.",
-    slug: "shopping-centers",
+      "Distribution centers, flex space, and manufacturing facilities. Strong demand from e-commerce and logistics growth.",
+    slug: "industrial-warehouse",
   },
   {
-    title: "Sale Leaseback Properties",
+    title: "Retail Properties",
     benefit:
-      "Corporate sale leasebacks with long-term NNN leases. Investment-grade tenants with predictable rent escalations.",
-    slug: "sale-leaseback",
+      "Shopping centers, strip malls, and single-tenant retail. Diverse tenant mixes or credit tenants with long-term leases.",
+    slug: "retail",
   },
   {
-    title: "Ground Leases",
+    title: "Office Buildings",
     benefit:
-      "Ground lease opportunities with zero cash flow options. Long-term land leases with built-in rent increases.",
-    slug: "ground-lease",
+      "Class A, B, and medical office properties. Professional tenants with multi-year leases and built-in escalations.",
+    slug: "office",
   },
   {
-    title: "Convenience & QSR",
+    title: "DST Investments",
     benefit:
-      "Convenience stores and quick service restaurants with strong brand recognition. Essential retail with recession-resistant income.",
-    slug: "convenience-qsr",
+      "Delaware Statutory Trust fractional ownership. Passive income without management responsibilities, ideal for hands-off investors.",
+    slug: "dst-investments",
   },
   {
-    title: "Pharmacy & Essential Retail",
+    title: "Mixed-Use Properties",
     benefit:
-      "Pharmacy chains and essential retail properties. Credit tenants with long-term leases and minimal management requirements.",
-    slug: "pharmacy-essential-retail",
+      "Combined retail, office, and residential assets. Diversified income streams with reduced single-tenant risk.",
+    slug: "mixed-use",
   },
 ];
 
 const faqs = [
   {
-    question: "What is a single tenant NNN retail property?",
+    question: "What is a 1031 exchange?",
     answer:
-      "A single tenant NNN (triple-net) retail property is a commercial real estate investment where one tenant leases the entire building and is responsible for property taxes, insurance, and maintenance. The landlord collects rent without day-to-day management responsibilities, making it ideal for hands-off 1031 exchange investors.",
-  },
-  {
-    question: "Why choose NNN retail for a 1031 exchange?",
-    answer:
-      "NNN retail properties provide predictable cash flow, minimal management requirements, and credit tenants with long-term leases. They're ideal for 1031 exchange buyers who want simple, hands-off ownership while deferring capital gains taxes.",
+      "A 1031 exchange, named after Section 1031 of the Internal Revenue Code, allows real estate investors to defer capital gains taxes when selling an investment property by reinvesting the proceeds into a like-kind replacement property. This powerful tax deferral strategy preserves equity for continued investment growth.",
   },
   {
     question: "What are the 45 and 180 day deadlines?",
     answer:
-      "The 45 day identification period begins the day the relinquished property closes and requires a written identification of replacement candidates delivered to the intermediary by midnight of day 45. The 180 day exchange period runs concurrently and ends on the 180th calendar day or the tax filing date, whichever comes first, unless an extension is properly filed.",
+      "The 45-day identification period begins the day the relinquished property closes and requires a written identification of replacement candidates delivered to the intermediary by midnight of day 45. The 180-day exchange period runs concurrently and ends on the 180th calendar day or the tax filing date, whichever comes first, unless an extension is properly filed.",
   },
   {
-    question: "Do you source properties nationwide?",
+    question: "What is a qualified intermediary?",
     answer:
-      "Yes. We help 1031 exchange buyers find single tenant NNN retail properties across all 50 states. Our nationwide network includes convenience stores, QSR, pharmacy chains, and essential retail properties with credit tenants.",
+      "A qualified intermediary (QI) is a neutral third party who holds the exchange proceeds between the sale of your relinquished property and the purchase of your replacement property. The QI ensures proper fund segregation and helps maintain IRS compliance throughout your exchange.",
   },
   {
-    question: "What is a sale leaseback?",
+    question: "What property types qualify for a 1031 exchange?",
     answer:
-      "A sale leaseback is when a company sells its property and immediately leases it back under a long-term NNN lease. This provides the seller with liquidity while maintaining operational control, and gives the buyer a credit tenant with predictable income.",
+      "Most investment and business real estate qualifies for 1031 treatment, including multifamily, retail, industrial, office, land, and mixed-use properties. The key requirement is that both properties must be held for investment or business use—not personal residences.",
   },
   {
-    question: "What is zero cash flow in a ground lease?",
+    question: "How do you help with property identification?",
     answer:
-      "Zero cash flow ground leases allow investors to defer taxes through a 1031 exchange while the ground lease payments offset other income, potentially resulting in minimal or zero taxable income. This strategy works for investors seeking tax deferral without current cash flow.",
+      "We help identify replacement properties that meet your investment criteria, timeline, and tax deferral goals. Our team sources options across all asset classes and coordinates with brokers, lenders, and your advisors to ensure timely identification within the 45-day window.",
+  },
+  {
+    question: "What is boot and how can it be avoided?",
+    answer:
+      "Boot is taxable gain that occurs when you receive cash, reduce debt, or acquire property of lesser value in your exchange. We help structure exchanges to minimize or eliminate boot through proper debt replacement planning and equity reinvestment strategies.",
   },
 ];
 
@@ -198,11 +196,11 @@ const organizationJsonLd = {
     "https://www.facebook.com/1031exchangephoenix",
   ],
   areaServed: {
-    "@type": "Country",
-    name: "United States",
+    "@type": "State",
+    name: "Arizona",
   },
   serviceType: "1031 Exchange Advisory Services",
-  description: "Nationwide 1031 exchange property identification and advisory services specializing in single tenant NNN retail, shopping centers, and net lease properties.",
+  description: "Full-service 1031 exchange coordination for Arizona investors. Property identification, qualified intermediary guidance, deadline management, and tax deferral strategies.",
 };
 
 const localBusinessJsonLd = {
@@ -242,12 +240,12 @@ const professionalServiceJsonLd = {
   provider: {
     "@id": `${SITE_DOMAIN}#localbusiness`,
   },
-  serviceType: "1031 Exchange Property Identification and Advisory",
+  serviceType: "1031 Exchange Advisory Services",
   areaServed: {
-    "@type": "Country",
-    name: "United States",
+    "@type": "State",
+    name: "Arizona",
   },
-  description: "Nationwide 1031 exchange property identification services for single tenant NNN retail, shopping centers, sale leasebacks, ground leases, and net lease properties.",
+  description: "Full-service 1031 exchange coordination including property identification, qualified intermediary guidance, deadline management, and tax deferral strategies for Arizona investors.",
 };
 
 const websiteJsonLd = {
@@ -299,13 +297,13 @@ export default function Page() {
             <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
               <div className="max-w-2xl">
                 <span className="section-label mb-4 inline-block text-white/80">
-                  Nationwide Single Tenant NNN Retail Property Specialists
+                  Phoenix 1031 Exchange Specialists
                 </span>
                 <h1 className="font-serif text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
-                  Find Single Tenant NNN Retail Properties for Your 1031 Exchange.
+                  Expert 1031 Exchange Services in Phoenix, Arizona.
                 </h1>
                 <p className="mt-6 text-lg text-white/90 sm:text-xl">
-                  We help 1031 exchange buyers quickly find high-quality single tenant net lease retail properties nationwide. Hands-off ownership where tenants handle taxes, insurance, and maintenance. You collect predictable rent.
+                  Full-service 1031 exchange coordination for Arizona investors. Property identification, qualified intermediary guidance, deadline management, and tax deferral strategies for all property types.
                 </p>
                 <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                   <Link
@@ -328,13 +326,6 @@ export default function Page() {
             </div>
           </div>
 
-          {/* Navigation Arrows - Mansion Global style */}
-          <button className="absolute left-4 top-1/2 z-20 -translate-y-1/2 flex h-12 w-12 items-center justify-center bg-white/90 text-mansion-charcoal transition hover:bg-white" aria-label="Previous">
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-          </button>
-          <button className="absolute right-4 top-1/2 z-20 -translate-y-1/2 flex h-12 w-12 items-center justify-center bg-white/90 text-mansion-charcoal transition hover:bg-white" aria-label="Next">
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-          </button>
         </section>
 
         {/* Content container */}
@@ -347,10 +338,10 @@ export default function Page() {
             {/* Featured large card */}
             <div className="group">
               <h2 className="font-serif text-3xl text-mansion-charcoal sm:text-4xl lg:text-5xl">
-                Why 1031 Exchange Buyers Choose Us.
+                Why Phoenix Investors Trust Us.
               </h2>
               <p className="mt-6 text-base leading-relaxed text-mansion-charcoal/70">
-                We specialize in helping unrepresented 1031 exchange buyers quickly find high-quality single tenant NNN retail properties nationwide. Fast property identification, trusted guidance, and speed to close.
+                We provide comprehensive 1031 exchange services for Arizona investors. From property identification to qualified intermediary coordination, we guide you through every step of your tax-deferred exchange.
               </p>
               <div className="mt-6 border-t border-gray-200 pt-6 text-sm text-mansion-charcoal/60">
                 A 1031 exchange defers federal and Arizona income tax on qualifying
@@ -367,27 +358,27 @@ export default function Page() {
             <div className="grid gap-4 sm:grid-cols-2">
               {[
                 {
-                  title: "Nationwide NNN Retail Network",
+                  title: "Property Identification",
                   description:
-                    "Access to single tenant net lease retail properties across all 50 states. Convenience, QSR, pharmacy, and essential retail brands.",
+                    "Expert guidance finding replacement properties across all asset classes. Multifamily, retail, industrial, office, and more.",
                   icon: MapPinIcon,
                 },
                 {
-                  title: "Fast Property Identification",
+                  title: "Qualified Intermediary Coordination",
                   description:
-                    "Quick sourcing of replacement properties that match your timeline, credit requirements, lease terms, and yield targets.",
+                    "We work with trusted QIs to ensure proper exchange structuring, fund segregation, and IRS compliance throughout your exchange.",
                   icon: SearchIcon,
                 },
                 {
-                  title: "Hands-Off Ownership",
+                  title: "Deadline Management",
                   description:
-                    "Triple-net properties where tenants handle taxes, insurance, and maintenance. Collect rent without day-to-day management.",
+                    "Never miss your 45-day identification or 180-day closing deadlines. Our timeline tools keep your exchange on track.",
                   icon: ShieldCheckIcon,
                 },
                 {
-                  title: "45-Day Deadline Support",
+                  title: "Tax Deferral Strategy",
                   description:
-                    "Structured identification strategies to meet your 45-day deadline. Pre-qualified properties ready for immediate consideration.",
+                    "Maximize tax deferral through proper exchange structuring. Boot analysis, debt replacement planning, and advisor coordination.",
                   icon: ClockIcon,
                 },
               ].map((feature) => (
@@ -498,10 +489,10 @@ export default function Page() {
             <div className="max-w-2xl">
               <p className="section-label mb-3">Our Services</p>
               <h2 className="font-serif text-3xl text-mansion-charcoal sm:text-4xl">
-                NNN Property Sourcing Services.
+                Complete 1031 Exchange Services.
               </h2>
               <p className="mt-4 text-base text-mansion-charcoal/70">
-                Fast property identification and deal flow for 1031 exchange buyers seeking single tenant NNN retail properties. Nationwide inventory and expert guidance.
+                From initial consultation to closing, we provide comprehensive support for your 1031 exchange. Property identification, QI coordination, and deadline management for all property types.
               </p>
             </div>
             <Link
@@ -521,10 +512,10 @@ export default function Page() {
             <div className="max-w-2xl">
               <p className="section-label mb-3">Property Types</p>
               <h2 className="font-serif text-3xl text-mansion-charcoal sm:text-4xl">
-                Single Tenant NNN Retail Property Types.
+                Replacement Property Options.
               </h2>
               <p className="mt-4 text-base text-mansion-charcoal/70">
-                High-quality single tenant net lease retail properties nationwide. Credit tenants, long-term leases, and hands-off ownership for 1031 exchange buyers.
+                We help identify replacement properties across all asset classes. Whether you're seeking passive income, appreciation, or a combination, we find properties that meet your investment goals.
               </p>
             </div>
             <Link
@@ -537,60 +528,18 @@ export default function Page() {
           </header>
           
           {/* Horizontal scrolling carousel - Mansion Global style */}
-          <div className="relative -mx-6 lg:-mx-8">
-            <div className="mansion-scroll flex gap-4 overflow-x-auto px-6 pb-4 lg:px-8">
-              {propertyTypes.map((property) => (
-                <Link
-                  key={property.slug}
-                  href={`/property-types/${property.slug}`}
-                  className="group flex-none"
-                  style={{ width: 'calc(33.333% - 1rem)', minWidth: '280px' }}
-                >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
-                    <Image
-                      src={getPropertyTypeImageSrc(property.slug)}
-                      alt={property.title}
-                      fill
-                      className="object-cover transition duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4">
-                      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-mansion-gold">
-                        NNN Retail
-                      </p>
-                      <h3 className="font-serif text-xl text-white">
-                        {property.title}
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <p className="text-sm leading-relaxed text-mansion-charcoal/70">
-                      {property.benefit}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-            {/* Carousel navigation arrows */}
-            <button className="absolute left-2 top-1/3 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white shadow-editorial transition hover:shadow-editorial-hover lg:left-4" aria-label="Previous">
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-            </button>
-            <button className="absolute right-2 top-1/3 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white shadow-editorial transition hover:shadow-editorial-hover lg:right-4" aria-label="Next">
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </button>
-          </div>
+          <HomepagePropertyTypes propertyTypes={propertyTypes} />
         </section>
 
         {/* Explore Top Markets - Mansion Global style city cards */}
         <section className="border-b border-gray-200 py-16">
           <header className="mb-8">
-            <p className="section-label mb-3">Explore Top Markets</p>
+            <p className="section-label mb-3">Service Areas</p>
             <h2 className="font-serif text-3xl text-mansion-charcoal sm:text-4xl">
-              Nationwide Single Tenant NNN Retail Properties.
+              Phoenix Metro 1031 Exchange Services.
             </h2>
             <p className="mt-4 max-w-3xl text-base text-mansion-charcoal/70">
-              We help 1031 exchange buyers nationwide find single tenant net lease retail properties. From Phoenix to New York, we source high-quality NNN properties with credit tenants, long-term leases, and hands-off ownership structures.
+              Comprehensive 1031 exchange support across the Phoenix metropolitan area. From downtown Phoenix to Scottsdale, Tempe, and the East Valley, we help Arizona investors navigate their tax-deferred exchanges.
             </p>
           </header>
           <HomepageServiceArea locations={locations} />
@@ -658,9 +607,8 @@ export default function Page() {
             <DeadlineCalculator />
             <TimelineTracker />
           </div>
-          <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          <div className="mt-6">
             <IdentificationRules />
-            <IdentificationLetterHelper />
           </div>
         </section>
 
@@ -776,124 +724,6 @@ export default function Page() {
           <div className="mx-auto max-w-4xl">
             <p className="section-label mb-3 text-center">Get Started</p>
             <LeadForm />
-          </div>
-        </section>
-
-        {/* Contact Info Section - Before main footer */}
-        <section className="border-t border-gray-200 py-16">
-          <div className="grid gap-8 lg:grid-cols-4">
-            <div className="lg:col-span-2">
-              <h2 className="font-serif text-2xl text-mansion-charcoal">1031 Exchange of Phoenix</h2>
-              <p className="mt-4 text-sm text-mansion-charcoal/70">
-                Precision guidance for Arizona investors seeking to preserve
-                equity and stay aligned with IRS requirements.
-              </p>
-              <div className="mt-6 space-y-2 text-sm text-mansion-charcoal/80">
-                <p>
-                  Phone:{" "}
-                  <Link
-                    href={`tel:${PHONE_NUMBER_URI}`}
-                    className="font-medium text-mansion-gold hover:text-mansion-gold-dark"
-                  >
-                    {PHONE_NUMBER}
-                  </Link>
-                </p>
-                <p>
-                  Email:{" "}
-                  <Link
-                    href={`mailto:${SUPPORT_EMAIL}`}
-                    className="font-medium text-mansion-gold hover:text-mansion-gold-dark"
-                  >
-                    {SUPPORT_EMAIL}
-                  </Link>
-                </p>
-                <p>Hours: {OFFICE_HOURS}</p>
-              </div>
-              {HAS_STAFFED_OFFICE ? (
-                <div className="mt-6 border border-gray-200 bg-gray-50 p-4 text-sm text-mansion-charcoal/80">
-                  <p className="font-semibold text-mansion-charcoal">
-                    Phoenix Office
-                  </p>
-                  <p>{OFFICE_ADDRESS_LINE_1}</p>
-                  <p>{OFFICE_ADDRESS_LINE_2}</p>
-                </div>
-              ) : (
-                <p className="mt-6 border border-gray-200 bg-gray-50 p-4 text-sm text-mansion-charcoal/80">
-                  Statewide advisory support conducted through scheduled
-                  consultations and virtual meetings.
-                </p>
-              )}
-            </div>
-            <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-mansion-charcoal/50">Quick Links</h3>
-              <ul className="mt-4 space-y-2 text-sm text-mansion-charcoal/70">
-                <li>
-                  <Link
-                    href="/services"
-                    className="hover:text-mansion-gold"
-                  >
-                    Services
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/property-types"
-                    className="hover:text-mansion-gold"
-                  >
-                    Property Types
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/resources"
-                    className="hover:text-mansion-gold"
-                  >
-                    Resources
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/locations"
-                    className="hover:text-mansion-gold"
-                  >
-                    Locations
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-mansion-charcoal/50">Service Areas</h3>
-              <ul className="mt-4 space-y-2 text-sm text-mansion-charcoal/70">
-                {footerLocations.map((location) => (
-                  <li key={location.slug}>
-                    <Link
-                      href={`/locations/${location.slug}`}
-                      className="hover:text-mansion-gold"
-                    >
-                      {location.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div className="mt-10 border-t border-gray-200 pt-6 text-xs text-mansion-charcoal/60">
-            <p>
-              Compliance resources:{" "}
-              <Link
-                href="https://www.irs.gov/forms-pubs/about-form-8824"
-                className="text-mansion-gold hover:text-mansion-gold-dark"
-              >
-                IRS Form 8824
-              </Link>{" "}
-              |{" "}
-              <Link
-                href="https://www.irs.gov/tax-professionals/section-1031-like-kind-exchanges"
-                className="text-mansion-gold hover:text-mansion-gold-dark"
-              >
-                IRS Like-Kind Exchanges
-              </Link>
-            </p>
           </div>
         </section>
 
