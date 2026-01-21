@@ -19,7 +19,7 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
     <nav
       aria-label="Breadcrumb"
       className={cn(
-        "flex flex-wrap items-center gap-2 text-xs text-[#2A2A2A]/60",
+        "flex flex-wrap items-center gap-2 text-xs uppercase tracking-wider text-mansion-charcoal/50",
         className,
       )}
     >
@@ -30,14 +30,14 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
             {item.href && !isLast ? (
               <Link
                 href={item.href}
-                className="font-medium text-[#006E7F] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                className="font-medium text-mansion-gold hover:text-mansion-gold-dark"
               >
                 {item.label}
               </Link>
             ) : (
-              <span className="font-semibold text-[#2A2A2A]/70">{item.label}</span>
+              <span className="font-semibold text-mansion-charcoal/70">{item.label}</span>
             )}
-            {!isLast && <span aria-hidden="true">›</span>}
+            {!isLast && <span aria-hidden="true">/</span>}
           </span>
         );
       })}

@@ -39,25 +39,31 @@ export function Header() {
   }, [pathname]);
 
   const navLinkClasses =
-    "relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]";
+    "relative inline-flex items-center gap-1 px-4 py-2 text-sm font-medium tracking-wide transition-colors hover:text-mansion-gold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mansion-gold";
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#E6A445]/30 bg-white/80 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-10 lg:px-16">
+    <header className="sticky top-0 z-40 bg-white shadow-sm">
+      {/* Gold accent bar - Mansion Global style */}
+      <div className="gold-accent-bar h-1" />
+      
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+        {/* Logo - centered on larger screens like Mansion Global */}
         <Link
           href="/"
-          className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+          className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mansion-gold"
         >
           <Image
             src="/1031-exchange-of-phoenix-az-logo.png"
             alt={COMPANY_NAME}
-            width={200}
-            height={60}
-            className="h-auto w-auto max-h-12"
+            width={220}
+            height={65}
+            className="h-auto w-auto max-h-14"
             priority
           />
         </Link>
-        <nav className="hidden items-center gap-4 lg:flex">
+
+        {/* Navigation - Mansion Global style */}
+        <nav className="hidden items-center lg:flex">
           <div
             onMouseEnter={() => setOpenMenu("services")}
             onMouseLeave={() => setOpenMenu(null)}
@@ -68,8 +74,8 @@ export function Header() {
               className={cn(
                 navLinkClasses,
                 openMenu === "services"
-                  ? "bg-[#006E7F]/10 text-[#006E7F]"
-                  : "text-[#2A2A2A]",
+                  ? "text-mansion-gold"
+                  : "text-mansion-charcoal",
               )}
               aria-haspopup="true"
               aria-expanded={openMenu === "services"}
@@ -79,44 +85,45 @@ export function Header() {
               }
             >
               Services
-              <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
+              <ChevronDownIcon className="h-3 w-3 ml-1" aria-hidden="true" />
             </button>
             {openMenu === "services" && (
               <div
                 onMouseEnter={() => setOpenMenu("services")}
                 onMouseLeave={() => setOpenMenu(null)}
-                className="absolute left-0 top-full pt-3 w-80"
+                className="absolute left-0 top-full pt-2 w-80"
               >
-                <div className="rounded-2xl border border-[#2A2A2A]/10 bg-white p-4 shadow-[0_20px_60px_rgba(24,24,24,0.08)]">
-              <ul className="space-y-2">
-                {primaryServices.map((service) => (
-                  <li key={service.slug}>
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="block rounded-xl px-3 py-2 text-sm text-[#2A2A2A]/80 transition hover:bg-[#F5F3EF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                    >
-                      <span className="font-semibold text-[#2A2A2A]">
-                        {service.name}
-                      </span>
-                      <span className="mt-1 block text-xs text-[#2A2A2A]/70">
-                        {service.short}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-                <li>
-                  <Link
-                    href="/services"
-                    className="block rounded-xl bg-[#006E7F]/10 px-3 py-2 text-sm font-semibold text-[#006E7F] transition hover:bg-[#006E7F]/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                  >
-                    View all services
-                  </Link>
-                </li>
-              </ul>
+                <div className="border border-gray-100 bg-white p-4 shadow-editorial">
+                  <ul className="space-y-1">
+                    {primaryServices.map((service) => (
+                      <li key={service.slug}>
+                        <Link
+                          href={`/services/${service.slug}`}
+                          className="block px-3 py-2 text-sm text-mansion-charcoal/80 transition hover:bg-gray-50 hover:text-mansion-gold"
+                        >
+                          <span className="font-medium text-mansion-charcoal">
+                            {service.name}
+                          </span>
+                          <span className="mt-1 block text-xs text-mansion-charcoal/60">
+                            {service.short}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                    <li className="border-t border-gray-100 pt-2 mt-2">
+                      <Link
+                        href="/services"
+                        className="block px-3 py-2 text-sm font-semibold text-mansion-gold transition hover:text-mansion-gold-dark"
+                      >
+                        View all services &rarr;
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
               </div>
             )}
           </div>
+
           <div
             onMouseEnter={() => setOpenMenu("locations")}
             onMouseLeave={() => setOpenMenu(null)}
@@ -127,8 +134,8 @@ export function Header() {
               className={cn(
                 navLinkClasses,
                 openMenu === "locations"
-                  ? "bg-[#006E7F]/10 text-[#006E7F]"
-                  : "text-[#2A2A2A]",
+                  ? "text-mansion-gold"
+                  : "text-mansion-charcoal",
               )}
               aria-haspopup="true"
               aria-expanded={openMenu === "locations"}
@@ -139,49 +146,43 @@ export function Header() {
                 )
               }
             >
-              Locations
-              <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
+              Top Markets
+              <ChevronDownIcon className="h-3 w-3 ml-1" aria-hidden="true" />
             </button>
             {openMenu === "locations" && (
               <div
                 onMouseEnter={() => setOpenMenu("locations")}
                 onMouseLeave={() => setOpenMenu(null)}
-                className="absolute left-0 top-full pt-3 w-72"
+                className="absolute left-0 top-full pt-2 w-72"
               >
-                <div className="rounded-2xl border border-[#2A2A2A]/10 bg-white p-4 shadow-[0_20px_60px_rgba(24,24,24,0.08)]">
-              <ul className="space-y-2">
-                {primaryLocations.map((location) => (
-                  <li key={location.slug}>
-                    <Link
-                      href={`/locations/${location.slug}`}
-                      className="block rounded-xl px-3 py-2 text-sm text-[#2A2A2A]/80 transition hover:bg-[#F5F3EF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                    >
-                      <span className="font-semibold text-[#2A2A2A]">
-                        {location.name}
-                      </span>
-                      <span className="mt-1 block text-xs text-[#2A2A2A]/70">
-                        {location.type === "city"
-                          ? `${location.name} 1031 Exchange Support`
-                          : location.type === "district"
-                            ? `${location.name} Exchange Services`
-                            : `${location.name} Exchange Support`}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-                <li>
-                  <Link
-                    href="/locations"
-                    className="block rounded-xl bg-[#006E7F]/10 px-3 py-2 text-sm font-semibold text-[#006E7F] transition hover:bg-[#006E7F]/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                  >
-                    View all locations
-                  </Link>
-                </li>
-              </ul>
+                <div className="border border-gray-100 bg-white p-4 shadow-editorial">
+                  <ul className="space-y-1">
+                    {primaryLocations.map((location) => (
+                      <li key={location.slug}>
+                        <Link
+                          href={`/locations/${location.slug}`}
+                          className="block px-3 py-2 text-sm text-mansion-charcoal/80 transition hover:bg-gray-50 hover:text-mansion-gold"
+                        >
+                          <span className="font-medium text-mansion-charcoal">
+                            {location.name}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                    <li className="border-t border-gray-100 pt-2 mt-2">
+                      <Link
+                        href="/locations"
+                        className="block px-3 py-2 text-sm font-semibold text-mansion-gold transition hover:text-mansion-gold-dark"
+                      >
+                        View all markets &rarr;
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
               </div>
             )}
           </div>
+
           <div
             onMouseEnter={() => setOpenMenu("propertyTypes")}
             onMouseLeave={() => setOpenMenu(null)}
@@ -192,8 +193,8 @@ export function Header() {
               className={cn(
                 navLinkClasses,
                 openMenu === "propertyTypes" || pathname?.startsWith("/property-types")
-                  ? "bg-[#006E7F]/10 text-[#006E7F]"
-                  : "text-[#2A2A2A]",
+                  ? "text-mansion-gold"
+                  : "text-mansion-charcoal",
               )}
               aria-haspopup="true"
               aria-expanded={openMenu === "propertyTypes"}
@@ -205,41 +206,42 @@ export function Header() {
               }
             >
               Property Types
-              <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
+              <ChevronDownIcon className="h-3 w-3 ml-1" aria-hidden="true" />
             </button>
             {openMenu === "propertyTypes" && (
               <div
                 onMouseEnter={() => setOpenMenu("propertyTypes")}
                 onMouseLeave={() => setOpenMenu(null)}
-                className="absolute left-0 top-full pt-3 w-72"
+                className="absolute left-0 top-full pt-2 w-72"
               >
-                <div className="rounded-2xl border border-[#2A2A2A]/10 bg-white p-4 shadow-[0_20px_60px_rgba(24,24,24,0.08)]">
-              <ul className="space-y-2">
-                {primaryPropertyTypes.map((propertyType) => (
-                  <li key={propertyType.slug}>
-                    <Link
-                      href={propertyType.route}
-                      className="block rounded-xl px-3 py-2 text-sm text-[#2A2A2A]/80 transition hover:bg-[#F5F3EF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                    >
-                      <span className="font-semibold text-[#2A2A2A]">
-                        {propertyType.name}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-                <li>
-                  <Link
-                    href="/property-types"
-                    className="block rounded-xl bg-[#006E7F]/10 px-3 py-2 text-sm font-semibold text-[#006E7F] transition hover:bg-[#006E7F]/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                  >
-                    View all property types
-                  </Link>
-                </li>
-              </ul>
+                <div className="border border-gray-100 bg-white p-4 shadow-editorial">
+                  <ul className="space-y-1">
+                    {primaryPropertyTypes.map((propertyType) => (
+                      <li key={propertyType.slug}>
+                        <Link
+                          href={propertyType.route}
+                          className="block px-3 py-2 text-sm text-mansion-charcoal/80 transition hover:bg-gray-50 hover:text-mansion-gold"
+                        >
+                          <span className="font-medium text-mansion-charcoal">
+                            {propertyType.name}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                    <li className="border-t border-gray-100 pt-2 mt-2">
+                      <Link
+                        href="/property-types"
+                        className="block px-3 py-2 text-sm font-semibold text-mansion-gold transition hover:text-mansion-gold-dark"
+                      >
+                        View all property types &rarr;
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
               </div>
             )}
           </div>
+
           <div
             onMouseEnter={() => setOpenMenu("tools")}
             onMouseLeave={() => setOpenMenu(null)}
@@ -250,8 +252,8 @@ export function Header() {
               className={cn(
                 navLinkClasses,
                 openMenu === "tools"
-                  ? "bg-[#006E7F]/10 text-[#006E7F]"
-                  : "text-[#2A2A2A]",
+                  ? "text-mansion-gold"
+                  : "text-mansion-charcoal",
               )}
               aria-haspopup="true"
               aria-expanded={openMenu === "tools"}
@@ -261,104 +263,109 @@ export function Header() {
               }
             >
               Tools
-              <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
+              <ChevronDownIcon className="h-3 w-3 ml-1" aria-hidden="true" />
             </button>
             {openMenu === "tools" && (
               <div
                 onMouseEnter={() => setOpenMenu("tools")}
                 onMouseLeave={() => setOpenMenu(null)}
-                className="absolute left-0 top-full pt-3 w-72"
+                className="absolute left-0 top-full pt-2 w-72"
               >
-                <div className="rounded-2xl border border-[#2A2A2A]/10 bg-white p-4 shadow-[0_20px_60px_rgba(24,24,24,0.08)]">
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/tools/boot-calculator"
-                    className="block rounded-xl px-3 py-2 text-sm text-[#2A2A2A]/80 transition hover:bg-[#F5F3EF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                  >
-                    <span className="font-semibold text-[#2A2A2A]">Boot Calculator</span>
-                    <span className="mt-1 block text-xs text-[#2A2A2A]/70">
-                      Calculate boot and tax implications
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/tools/exchange-cost-estimator"
-                    className="block rounded-xl px-3 py-2 text-sm text-[#2A2A2A]/80 transition hover:bg-[#F5F3EF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                  >
-                    <span className="font-semibold text-[#2A2A2A]">Exchange Cost Estimator</span>
-                    <span className="mt-1 block text-xs text-[#2A2A2A]/70">
-                      Estimate QI fees and closing costs
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/tools/identification-rules-checker"
-                    className="block rounded-xl px-3 py-2 text-sm text-[#2A2A2A]/80 transition hover:bg-[#F5F3EF] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                  >
-                    <span className="font-semibold text-[#2A2A2A]">
-                      Identification Rules Checker
-                    </span>
-                    <span className="mt-1 block text-xs text-[#2A2A2A]/70">
-                      Validate identification compliance
-                    </span>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/tools"
-                    className="block rounded-xl bg-[#006E7F]/10 px-3 py-2 text-sm font-semibold text-[#006E7F] transition hover:bg-[#006E7F]/15 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                  >
-                    View all tools
-                  </Link>
-                </li>
-              </ul>
+                <div className="border border-gray-100 bg-white p-4 shadow-editorial">
+                  <ul className="space-y-1">
+                    <li>
+                      <Link
+                        href="/tools/boot-calculator"
+                        className="block px-3 py-2 text-sm text-mansion-charcoal/80 transition hover:bg-gray-50 hover:text-mansion-gold"
+                      >
+                        <span className="font-medium text-mansion-charcoal">Boot Calculator</span>
+                        <span className="mt-1 block text-xs text-mansion-charcoal/60">
+                          Calculate boot and tax implications
+                        </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/tools/exchange-cost-estimator"
+                        className="block px-3 py-2 text-sm text-mansion-charcoal/80 transition hover:bg-gray-50 hover:text-mansion-gold"
+                      >
+                        <span className="font-medium text-mansion-charcoal">Exchange Cost Estimator</span>
+                        <span className="mt-1 block text-xs text-mansion-charcoal/60">
+                          Estimate QI fees and closing costs
+                        </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/tools/identification-rules-checker"
+                        className="block px-3 py-2 text-sm text-mansion-charcoal/80 transition hover:bg-gray-50 hover:text-mansion-gold"
+                      >
+                        <span className="font-medium text-mansion-charcoal">
+                          Identification Rules Checker
+                        </span>
+                        <span className="mt-1 block text-xs text-mansion-charcoal/60">
+                          Validate identification compliance
+                        </span>
+                      </Link>
+                    </li>
+                    <li className="border-t border-gray-100 pt-2 mt-2">
+                      <Link
+                        href="/tools"
+                        className="block px-3 py-2 text-sm font-semibold text-mansion-gold transition hover:text-mansion-gold-dark"
+                      >
+                        View all tools &rarr;
+                      </Link>
+                    </li>
+                  </ul>
                 </div>
               </div>
             )}
           </div>
+
           <Link
             href="/about"
             className={cn(
               navLinkClasses,
               pathname === "/about"
-                ? "bg-[#006E7F]/10 text-[#006E7F]"
-                : "text-[#2A2A2A]",
+                ? "text-mansion-gold"
+                : "text-mansion-charcoal",
             )}
           >
             About
           </Link>
+
           <Link
             href="/blog"
             className={cn(
               navLinkClasses,
               pathname?.startsWith("/blog")
-                ? "bg-[#006E7F]/10 text-[#006E7F]"
-                : "text-[#2A2A2A]",
+                ? "text-mansion-gold"
+                : "text-mansion-charcoal",
             )}
           >
             Blog
           </Link>
+
           <Link
             href="/contact"
-            className="inline-flex h-11 items-center justify-center rounded-full bg-[#006E7F] px-5 text-sm font-semibold text-white transition hover:bg-[#005563] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+            className="ml-4 inline-flex h-10 items-center justify-center border-2 border-mansion-gold bg-transparent px-6 text-sm font-semibold text-mansion-gold transition hover:bg-mansion-gold hover:text-white"
           >
-            Contact Team
+            Contact
           </Link>
         </nav>
+
+        {/* Mobile navigation */}
         <div className="flex items-center gap-3 lg:hidden">
           <Link
             href={`tel:${PHONE_NUMBER_URI}`}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#006E7F]/40 text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+            className="inline-flex h-10 w-10 items-center justify-center border border-mansion-gold/40 text-mansion-gold"
             aria-label={`Call ${PHONE_NUMBER}`}
           >
             <PhoneIcon className="h-5 w-5" aria-hidden="true" />
           </Link>
           <Link
             href="/contact"
-            className="inline-flex h-10 items-center justify-center rounded-full bg-[#006E7F] px-4 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+            className="inline-flex h-10 items-center justify-center bg-mansion-gold px-4 text-sm font-semibold text-white"
           >
             Contact
           </Link>

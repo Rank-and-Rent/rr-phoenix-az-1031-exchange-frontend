@@ -54,8 +54,8 @@ export default async function LocationPage({ params }: Props) {
   const batchData = getLocationBatchData(slug);
 
   return (
-    <div className="min-h-screen bg-[#F5F3EF]">
-      <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-8 sm:px-10 lg:px-16">
+    <div className="min-h-screen bg-white">
+      <div className="mx-auto max-w-7xl px-6 pb-24 pt-8 lg:px-8">
         <Breadcrumbs
           items={[
             { label: "Home", href: "/" },
@@ -64,8 +64,8 @@ export default async function LocationPage({ params }: Props) {
           ]}
         />
 
-        <article className="space-y-10 pt-8">
-          <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
+        <article className="pt-8">
+          <div className="relative aspect-[21/9] w-full overflow-hidden">
             <Image
               src={getLocationImageSrc(slug)}
               alt={`${location.name}, ${PRIMARY_STATE_ABBR}`}
@@ -74,52 +74,61 @@ export default async function LocationPage({ params }: Props) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
               priority
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-white/80">Market</p>
+              <h1 className="mt-2 font-serif text-4xl text-white sm:text-5xl">
+                {location.name}
+              </h1>
+            </div>
           </div>
-          <header className="max-w-3xl space-y-4">
-            <h1 className="font-playfair text-4xl font-bold text-[#2A2A2A] sm:text-5xl">
-              1031 Exchange Services in {location.name}
-            </h1>
+
+          <div className="mt-12 max-w-3xl">
             {batchData?.mainDescription ? (
               <div
-                className="text-base text-[#2A2A2A]/75 sm:text-lg"
+                className="text-base leading-relaxed text-mansion-charcoal/80 sm:text-lg"
                 dangerouslySetInnerHTML={{
                   __html: batchData.mainDescription,
                 }}
               />
             ) : (
-              <p className="text-base text-[#2A2A2A]/75 sm:text-lg">
+              <p className="text-base leading-relaxed text-mansion-charcoal/80 sm:text-lg">
                 {location.intro}
               </p>
             )}
-          </header>
+          </div>
 
-          <div className="space-y-6">
-            <h2 className="font-playfair text-3xl font-bold text-[#2A2A2A]">
+          <section className="mt-16 border-t border-gray-200 pt-12">
+            <p className="section-label mb-3">FAQ</p>
+            <h2 className="font-serif text-3xl text-mansion-charcoal">
               Frequently Asked Questions
             </h2>
-            <div className="space-y-4">
+            <div className="mt-8 divide-y divide-gray-200">
               {(batchData?.faqs ?? location.faq).map((faq, idx) => (
                 <details
                   key={idx}
-                  className="group rounded-2xl border border-white/70 bg-white/80 p-6 shadow-[0_12px_40px_rgba(24,24,24,0.06)] transition focus-within:border-[#E6A445]/40"
+                  className="group py-6"
                 >
-                  <summary className="flex cursor-pointer items-center justify-between gap-4 font-inter text-lg font-medium text-[#2A2A2A]">
-                    <span>{faq.question}</span>
-                    <ArrowRightIcon className="h-5 w-5 text-[#006E7F] transition group-open:rotate-90" />
+                  <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg text-mansion-charcoal">
+                    <span className="font-serif">{faq.question}</span>
+                    <span className="flex h-8 w-8 flex-none items-center justify-center border border-gray-300 text-mansion-gold transition group-open:rotate-45 group-open:border-mansion-gold">
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                    </span>
                   </summary>
-                  <p className="mt-4 text-sm text-[#2A2A2A]/75">
+                  <p className="mt-4 pr-12 text-sm leading-relaxed text-mansion-charcoal/70">
                     {faq.answer}
                   </p>
                 </details>
               ))}
             </div>
-          </div>
+          </section>
 
-          <div className="space-y-6">
-            <h2 className="font-playfair text-3xl font-bold text-[#2A2A2A]">
+          <section className="mt-16 border-t border-gray-200 pt-12">
+            <p className="section-label mb-3">Services</p>
+            <h2 className="font-serif text-3xl text-mansion-charcoal">
               Available Services
             </h2>
-            <p className="text-base text-[#2A2A2A]/75">
+            <p className="mt-4 text-base text-mansion-charcoal/70">
               We provide comprehensive 1031 exchange support for investors in{" "}
               {location.name}, {PRIMARY_STATE_ABBR}. Our services include
               replacement property identification, timeline management, and
@@ -127,36 +136,34 @@ export default async function LocationPage({ params }: Props) {
             </p>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold hover:text-mansion-gold-dark"
             >
               View all services
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
+          </section>
+
+          <div className="mt-16 border border-gray-200 bg-white p-10 text-center shadow-editorial">
+            <h2 className="font-serif text-3xl text-mansion-charcoal">
+              Ready to discuss your exchange?
+            </h2>
+            <p className="mt-4 text-base text-mansion-charcoal/70">
+              Connect with our team to discuss your 1031 exchange needs in{" "}
+              {location.name}, {PRIMARY_STATE_ABBR}.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-6 inline-flex items-center justify-center gap-2 bg-mansion-gold px-6 py-3 text-base font-semibold text-white transition hover:bg-mansion-gold-dark"
+            >
+              Contact Us
+              <ArrowRightIcon className="h-5 w-5" />
+            </Link>
           </div>
 
-          <div className="rounded-3xl border border-white/70 bg-white/90 p-10 shadow-[0_32px_120px_rgba(24,24,24,0.08)]">
-            <div className="space-y-6 text-center">
-              <h2 className="font-playfair text-3xl font-bold text-[#2A2A2A]">
-                Ready to discuss your exchange?
-              </h2>
-              <p className="text-base text-[#2A2A2A]/75">
-                Connect with our team to discuss your 1031 exchange needs in{" "}
-                {location.name}, {PRIMARY_STATE_ABBR}.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#E6A445] px-6 py-3 text-base font-semibold text-[#2A2A2A] transition hover:bg-[#C88735] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-              >
-                Contact Us
-                <ArrowRightIcon className="h-5 w-5" />
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex justify-center">
+          <div className="mt-8 flex justify-center">
             <Link
               href="/locations"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold hover:text-mansion-gold-dark"
             >
               View all locations
               <ArrowRightIcon className="h-4 w-4" />
@@ -207,4 +214,3 @@ export default async function LocationPage({ params }: Props) {
     </div>
   );
 }
-

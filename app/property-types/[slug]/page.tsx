@@ -55,8 +55,8 @@ export default async function PropertyTypePage({ params }: Props) {
   const batchData = getPropertyTypeBatchData(slug);
 
   return (
-    <div className="min-h-screen bg-[#F5F3EF]">
-      <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-8 sm:px-10 lg:px-16">
+    <div className="min-h-screen bg-white">
+      <div className="mx-auto max-w-7xl px-6 pb-24 pt-8 lg:px-8">
         <Breadcrumbs
           items={[
             { label: "Home", href: "/" },
@@ -65,8 +65,8 @@ export default async function PropertyTypePage({ params }: Props) {
           ]}
         />
 
-        <article className="space-y-10 pt-8">
-          <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
+        <article className="pt-8">
+          <div className="relative aspect-[21/9] w-full overflow-hidden">
             <Image
               src={getPropertyTypeImageSrc(slug)}
               alt={propertyType.name}
@@ -75,90 +75,97 @@ export default async function PropertyTypePage({ params }: Props) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
               priority
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.15em] text-mansion-gold">Property Type</p>
+              <h1 className="mt-2 font-serif text-4xl text-white sm:text-5xl">
+                {propertyType.name} Properties
+              </h1>
+            </div>
           </div>
-          <header className="max-w-3xl space-y-4">
-            <h1 className="font-playfair text-4xl font-bold text-[#2A2A2A] sm:text-5xl">
-              {propertyType.name} Properties for 1031 Exchange
-            </h1>
+
+          <div className="mt-12 max-w-3xl">
             {batchData?.mainDescription ? (
               <div
-                className="text-base text-[#2A2A2A]/75 sm:text-lg"
+                className="text-base leading-relaxed text-mansion-charcoal/80 sm:text-lg"
                 dangerouslySetInnerHTML={{
                   __html: batchData.mainDescription,
                 }}
               />
             ) : (
-              <p className="text-base text-[#2A2A2A]/75 sm:text-lg">
+              <p className="text-base leading-relaxed text-mansion-charcoal/80 sm:text-lg">
                 Explore {propertyType.name} properties as replacement options for your 1031 exchange in {PRIMARY_CITY}, {PRIMARY_STATE_ABBR}.
               </p>
             )}
-          </header>
+          </div>
 
           {batchData?.faqs && batchData.faqs.length > 0 && (
-            <div className="space-y-6">
-              <h2 className="font-playfair text-3xl font-bold text-[#2A2A2A]">
+            <section className="mt-16 border-t border-gray-200 pt-12">
+              <p className="section-label mb-3">FAQ</p>
+              <h2 className="font-serif text-3xl text-mansion-charcoal">
                 Frequently Asked Questions
               </h2>
-              <div className="space-y-4">
+              <div className="mt-8 divide-y divide-gray-200">
                 {batchData.faqs.map((faq, idx) => (
                   <details
                     key={idx}
-                    className="group rounded-2xl border border-white/70 bg-white/80 p-6 shadow-[0_12px_40px_rgba(24,24,24,0.06)] transition focus-within:border-[#E6A445]/40"
+                    className="group py-6"
                   >
-                    <summary className="flex cursor-pointer items-center justify-between gap-4 font-inter text-lg font-medium text-[#2A2A2A]">
-                      <span>{faq.question}</span>
-                      <ArrowRightIcon className="h-5 w-5 text-[#006E7F] transition group-open:rotate-90" />
+                    <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg text-mansion-charcoal">
+                      <span className="font-serif">{faq.question}</span>
+                      <span className="flex h-8 w-8 flex-none items-center justify-center border border-gray-300 text-mansion-gold transition group-open:rotate-45 group-open:border-mansion-gold">
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                      </span>
                     </summary>
-                    <p className="mt-4 text-sm text-[#2A2A2A]/75">
+                    <p className="mt-4 pr-12 text-sm leading-relaxed text-mansion-charcoal/70">
                       {faq.answer}
                     </p>
                   </details>
                 ))}
               </div>
-            </div>
+            </section>
           )}
 
           {batchData?.inclusions && batchData.inclusions.length > 0 && (
-            <div className="space-y-6">
-              <h2 className="font-playfair text-3xl font-bold text-[#2A2A2A]">
+            <section className="mt-16 border-t border-gray-200 pt-12">
+              <p className="section-label mb-3">Inclusions</p>
+              <h2 className="font-serif text-3xl text-mansion-charcoal">
                 What We Include
               </h2>
-              <ul className="space-y-3">
+              <ul className="mt-6 space-y-3">
                 {batchData.inclusions.map((inclusion, idx) => (
                   <li
                     key={idx}
-                    className="flex items-start gap-3 text-base text-[#2A2A2A]/75"
+                    className="flex items-start gap-3 text-base text-mansion-charcoal/80"
                   >
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#006E7F]" />
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-mansion-gold" />
                     <span>{inclusion}</span>
                   </li>
                 ))}
               </ul>
-            </div>
+            </section>
           )}
 
-          <div className="rounded-3xl border border-white/70 bg-white/90 p-10 shadow-[0_32px_120px_rgba(24,24,24,0.08)]">
-            <div className="space-y-6 text-center">
-              <h2 className="font-playfair text-3xl font-bold text-[#2A2A2A]">
-                Ready to discuss your exchange?
-              </h2>
-              <p className="text-base text-[#2A2A2A]/75">
-                Connect with our team to discuss {propertyType.name} replacement properties for your 1031 exchange in {PRIMARY_CITY}, {PRIMARY_STATE_ABBR}.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#E6A445] px-6 py-3 text-base font-semibold text-[#2A2A2A] transition hover:bg-[#C88735] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-              >
-                Contact Us
-                <ArrowRightIcon className="h-5 w-5" />
-              </Link>
-            </div>
+          <div className="mt-16 border border-gray-200 bg-white p-10 text-center shadow-editorial">
+            <h2 className="font-serif text-3xl text-mansion-charcoal">
+              Ready to discuss your exchange?
+            </h2>
+            <p className="mt-4 text-base text-mansion-charcoal/70">
+              Connect with our team to discuss {propertyType.name} replacement properties for your 1031 exchange in {PRIMARY_CITY}, {PRIMARY_STATE_ABBR}.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-6 inline-flex items-center justify-center gap-2 bg-mansion-gold px-6 py-3 text-base font-semibold text-white transition hover:bg-mansion-gold-dark"
+            >
+              Contact Us
+              <ArrowRightIcon className="h-5 w-5" />
+            </Link>
           </div>
 
-          <div className="flex justify-center">
+          <div className="mt-8 flex justify-center">
             <Link
               href="/property-types"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold hover:text-mansion-gold-dark"
             >
               View all property types
               <ArrowRightIcon className="h-4 w-4" />
@@ -217,4 +224,3 @@ export default async function PropertyTypePage({ params }: Props) {
     </div>
   );
 }
-

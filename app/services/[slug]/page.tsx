@@ -59,8 +59,8 @@ export default async function ServicePage({ params }: Props) {
   const allServices = getAllServices();
 
   return (
-    <div className="min-h-screen bg-[#F5F3EF]">
-      <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-8 sm:px-10 lg:px-16">
+    <div className="min-h-screen bg-white">
+      <div className="mx-auto max-w-7xl px-6 pb-24 pt-8 lg:px-8">
         <Breadcrumbs
           items={[
             { label: "Home", href: "/" },
@@ -69,72 +69,75 @@ export default async function ServicePage({ params }: Props) {
           ]}
         />
 
-        <article className="space-y-10 pt-8">
-          <header className="max-w-3xl space-y-4">
-            <h1 className="font-playfair text-4xl font-bold text-[#2A2A2A] sm:text-5xl">
+        <article className="pt-8">
+          <header className="mb-12 max-w-3xl">
+            <p className="section-label mb-3">Service</p>
+            <h1 className="font-serif text-4xl text-mansion-charcoal sm:text-5xl">
               {service.name}
             </h1>
-            <p className="text-base text-[#2A2A2A]/75 sm:text-lg">
+            <p className="mt-4 text-base text-mansion-charcoal/70 sm:text-lg">
               {service.shortDescription}
             </p>
           </header>
 
-          <div className="prose prose-lg max-w-none space-y-6 text-[#2A2A2A]">
-            <div className="space-y-4">
-              <h2 className="font-playfair text-2xl font-bold text-[#2A2A2A]">
+          <div className="prose prose-lg max-w-none space-y-8">
+            <section className="border-b border-gray-200 pb-8">
+              <h2 className="font-serif text-2xl text-mansion-charcoal">
                 Overview
               </h2>
               {batchData?.mainDescription ? (
                 <div
-                  className="text-base leading-relaxed"
+                  className="mt-4 text-base leading-relaxed text-mansion-charcoal/80"
                   dangerouslySetInnerHTML={{
                     __html: batchData.mainDescription,
                   }}
                 />
               ) : (
-                <p className="text-base leading-relaxed">{service.overview}</p>
+                <p className="mt-4 text-base leading-relaxed text-mansion-charcoal/80">{service.overview}</p>
               )}
-            </div>
+            </section>
 
             {service.highlights.length > 0 && (
-              <div className="space-y-4">
-                <h2 className="font-playfair text-2xl font-bold text-[#2A2A2A]">
+              <section className="border-b border-gray-200 pb-8">
+                <h2 className="font-serif text-2xl text-mansion-charcoal">
                   Highlights
                 </h2>
-                <ul className="space-y-2 pl-6">
+                <ul className="mt-4 space-y-2">
                   {service.highlights.map((highlight, idx) => (
-                    <li key={idx} className="text-base leading-relaxed">
-                      {highlight}
+                    <li key={idx} className="flex items-start gap-3 text-base text-mansion-charcoal/80">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-mansion-gold" />
+                      <span>{highlight}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </section>
             )}
 
             {(batchData?.inclusions?.length ?? service.deliverables.length) > 0 && (
-              <div className="space-y-4">
-                <h2 className="font-playfair text-2xl font-bold text-[#2A2A2A]">
+              <section className="border-b border-gray-200 pb-8">
+                <h2 className="font-serif text-2xl text-mansion-charcoal">
                   {batchData?.inclusions ? "What's Included" : "Deliverables"}
                 </h2>
-                <ul className="space-y-2 pl-6">
+                <ul className="mt-4 space-y-2">
                   {(batchData?.inclusions ?? service.deliverables).map((item, idx) => (
-                    <li key={idx} className="text-base leading-relaxed">
-                      {item}
+                    <li key={idx} className="flex items-start gap-3 text-base text-mansion-charcoal/80">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-mansion-gold" />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
+              </section>
             )}
           </div>
 
-          <div className="rounded-2xl border border-[#006E7F]/20 bg-[#006E7F]/8 p-6 text-sm text-[#2A2A2A]/80">
+          <div className="mt-8 border border-mansion-gold/20 bg-mansion-gold/5 p-6 text-sm text-mansion-charcoal/80">
             {batchData?.complianceNote ? (
-              <p className="font-semibold text-[#006E7F]">
+              <p className="font-semibold text-mansion-gold-dark">
                 {batchData.complianceNote}
               </p>
             ) : (
               <>
-                <p className="font-semibold text-[#006E7F]">
+                <p className="font-semibold text-mansion-gold-dark">
                   Educational content only. Not tax or legal advice.
                 </p>
                 <p className="mt-2">
@@ -144,94 +147,79 @@ export default async function ServicePage({ params }: Props) {
             )}
           </div>
 
-          <div className="space-y-6">
-            <h2 className="font-playfair text-3xl font-bold text-[#2A2A2A]">
+          <section className="mt-16 border-t border-gray-200 pt-12">
+            <p className="section-label mb-3">FAQ</p>
+            <h2 className="font-serif text-3xl text-mansion-charcoal">
               Frequently Asked Questions
             </h2>
-            <div className="space-y-4">
+            <div className="mt-8 divide-y divide-gray-200">
               {(batchData?.faqs ?? service.faq).map((faq, idx) => (
                 <details
                   key={idx}
-                  className="group rounded-2xl border border-white/70 bg-white/80 p-6 shadow-[0_12px_40px_rgba(24,24,24,0.06)] transition focus-within:border-[#E6A445]/40"
+                  className="group py-6"
                 >
-                  <summary className="flex cursor-pointer items-center justify-between gap-4 font-inter text-lg font-medium text-[#2A2A2A]">
-                    <span>{faq.question}</span>
-                    <ArrowRightIcon className="h-5 w-5 text-[#006E7F] transition group-open:rotate-90" />
+                  <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg text-mansion-charcoal">
+                    <span className="font-serif">{faq.question}</span>
+                    <span className="flex h-8 w-8 flex-none items-center justify-center border border-gray-300 text-mansion-gold transition group-open:rotate-45 group-open:border-mansion-gold">
+                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                    </span>
                   </summary>
-                  <p className="mt-4 text-sm text-[#2A2A2A]/75">
+                  <p className="mt-4 pr-12 text-sm leading-relaxed text-mansion-charcoal/70">
                     {faq.answer}
                   </p>
                 </details>
               ))}
             </div>
-          </div>
+          </section>
 
-          <div className="space-y-6">
-            <h2 className="font-playfair text-3xl font-bold text-[#2A2A2A]">
+          <section className="mt-16 border-t border-gray-200 pt-12">
+            <p className="section-label mb-3">Related</p>
+            <h2 className="font-serif text-3xl text-mansion-charcoal">
               Related Services
             </h2>
 
             <div
               id="related-services-grid"
-              className="grid gap-6 sm:grid-cols-2"
+              className="mt-8 grid gap-px bg-gray-200 sm:grid-cols-2"
             >
               {relatedServices.map((related) => (
                 <Link
                   key={related.slug}
                   href={`/services/${related.slug}`}
-                  className="group flex h-full flex-col justify-between rounded-2xl border border-white/70 bg-white/70 p-6 shadow-[0_12px_40px_rgba(24,24,24,0.07)] transition hover:border-[#E6A445]/40 hover:shadow-[0_18px_48px_rgba(24,24,24,0.10)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                  className="group flex h-full flex-col justify-between bg-white p-6 transition hover:bg-gray-50"
                 >
                   <div>
-                    <h3 className="font-inter text-xl font-medium text-[#2A2A2A]">
+                    <h3 className="font-serif text-xl text-mansion-charcoal">
                       {related.name}
                     </h3>
-                    <p className="mt-3 text-sm text-[#2A2A2A]/75">
+                    <p className="mt-3 text-sm leading-relaxed text-mansion-charcoal/70">
                       {related.shortDescription}
                     </p>
                   </div>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#006E7F]">
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold">
                     Explore
                     <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
                   </span>
                 </Link>
               ))}
             </div>
+          </section>
 
-            <div
-              id="no-related-results"
-              className="hidden rounded-2xl border border-white/70 bg-white/80 p-6 text-center"
+          <div className="mt-16 border border-gray-200 bg-white p-10 text-center shadow-editorial">
+            <h2 className="font-serif text-3xl text-mansion-charcoal">
+              Ready to get started?
+            </h2>
+            <p className="mt-4 text-base text-mansion-charcoal/70">
+              Discuss your exchange timeline and replacement objectives with our{" "}
+              {PRIMARY_CITY} team.
+            </p>
+            <Link
+              href={`/contact?projectType=${encodeURIComponent(service.name)}#project-type`}
+              className="mt-6 inline-flex items-center justify-center gap-2 bg-mansion-gold px-6 py-3 text-base font-semibold text-white transition hover:bg-mansion-gold-dark"
             >
-              <p className="text-sm text-[#2A2A2A]/75">
-                We can help with{" "}
-                <span id="search-query-display" className="font-semibold"></span>
-              </p>
-              <Link
-                href="/contact"
-                className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#006E7F] underline-offset-4 hover:underline"
-              >
-                Contact us
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
-            </div>
-          </div>
-
-          <div className="rounded-3xl border border-white/70 bg-white/90 p-10 shadow-[0_32px_120px_rgba(24,24,24,0.08)]">
-            <div className="space-y-6 text-center">
-              <h2 className="font-playfair text-3xl font-bold text-[#2A2A2A]">
-                Ready to get started?
-              </h2>
-              <p className="text-base text-[#2A2A2A]/75">
-                Discuss your exchange timeline and replacement objectives with our{" "}
-                {PRIMARY_CITY} team.
-              </p>
-              <Link
-                href={`/contact?projectType=${encodeURIComponent(service.name)}#project-type`}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#E6A445] px-6 py-3 text-base font-semibold text-[#2A2A2A] transition hover:bg-[#C88735] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-              >
-                Request Consultation
-                <ArrowRightIcon className="h-5 w-5" />
-              </Link>
-            </div>
+              Request Consultation
+              <ArrowRightIcon className="h-5 w-5" />
+            </Link>
           </div>
         </article>
       </div>
@@ -283,4 +271,3 @@ export default async function ServicePage({ params }: Props) {
     </div>
   );
 }
-

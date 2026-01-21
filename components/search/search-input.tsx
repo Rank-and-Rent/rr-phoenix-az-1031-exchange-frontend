@@ -26,7 +26,7 @@ export function SearchInput({
       role="search"
       aria-label={label}
       className={cn(
-        "flex items-center gap-2 rounded-full border border-[#2A2A2A]/15 bg-white px-4 py-2 shadow-sm focus-within:border-[#006E7F]",
+        "flex items-center gap-3 border border-gray-200 bg-white px-4 py-3 focus-within:border-mansion-gold",
         className,
       )}
       onSubmit={(event) => {
@@ -34,7 +34,7 @@ export function SearchInput({
         onSearch(value.trim());
       }}
     >
-      <SearchIcon className="h-4 w-4 text-[#006E7F]" aria-hidden="true" />
+      <SearchIcon className="h-5 w-5 text-mansion-gold" aria-hidden="true" />
       <input
         type="search"
         value={value}
@@ -46,12 +46,12 @@ export function SearchInput({
           }
         }}
         placeholder={placeholder}
-        className="flex-1 bg-transparent text-sm text-[#2A2A2A] placeholder:text-[#2A2A2A]/50 focus:outline-none"
+        className="flex-1 bg-transparent text-sm text-mansion-charcoal placeholder:text-mansion-charcoal/40 focus:outline-none"
       />
       {value && (
         <button
           type="button"
-          className="rounded-full px-2 text-xs font-semibold text-[#006E7F] hover:text-[#005563] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+          className="px-2 text-xs font-semibold text-mansion-gold hover:text-mansion-gold-dark"
           onClick={() => {
             setValue("");
             onSearch("");
@@ -62,7 +62,7 @@ export function SearchInput({
       )}
       <button
         type="submit"
-        className="hidden rounded-full bg-[#006E7F] px-3 py-1 text-xs font-semibold text-white transition hover:bg-[#005563] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F] sm:inline-flex"
+        className="hidden bg-mansion-gold px-4 py-1.5 text-xs font-semibold text-white transition hover:bg-mansion-gold-dark sm:inline-flex"
       >
         Search
       </button>

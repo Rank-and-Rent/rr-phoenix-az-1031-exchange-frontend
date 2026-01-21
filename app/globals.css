@@ -4,6 +4,10 @@
 
 :root {
   color-scheme: light;
+  --mansion-gold: #8B7355;
+  --mansion-gold-dark: #6B5A47;
+  --mansion-navy: #1a1f2e;
+  --mansion-charcoal: #1a1a1a;
 }
 
 html,
@@ -12,7 +16,7 @@ body {
 }
 
 body {
-  @apply bg-[#F5F3EF] text-[#2A2A2A] antialiased;
+  @apply bg-white text-mansion-charcoal antialiased;
   font-family: var(--font-source-sans), system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
 }
@@ -21,7 +25,8 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-playfair), "Times New Roman", serif;
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  @apply font-normal tracking-tight;
 }
 
 .font-inter {
@@ -29,10 +34,38 @@ h4 {
 }
 
 .container {
-  @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
 }
 
 :where(a, button, [role="button"], input, select, textarea):focus-visible {
-  outline: 2px solid #006e7f;
+  outline: 2px solid var(--mansion-gold);
   outline-offset: 2px;
+}
+
+/* Mansion Global inspired scrollbar for carousels */
+.mansion-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.mansion-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Section label styling like Mansion Global */
+.section-label {
+  @apply text-xs font-semibold uppercase tracking-[0.15em] text-mansion-gold;
+}
+
+/* Editorial card hover effect */
+.editorial-card {
+  @apply transition-all duration-300;
+}
+.editorial-card:hover {
+  @apply shadow-editorial-hover;
+  transform: translateY(-2px);
+}
+
+/* Gold accent bar styling */
+.gold-accent-bar {
+  background: linear-gradient(90deg, var(--mansion-gold) 0%, var(--mansion-gold-dark) 100%);
 }

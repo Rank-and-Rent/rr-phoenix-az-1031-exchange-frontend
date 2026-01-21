@@ -31,8 +31,8 @@ export const metadata: Metadata = {
 
 export default function BootCalculatorPage() {
   return (
-    <div className="min-h-screen bg-[#F5F3EF]">
-      <div className="relative mx-auto max-w-4xl px-6 pb-24 pt-8 sm:px-10 lg:px-16">
+    <div className="min-h-screen bg-white">
+      <div className="mx-auto max-w-4xl px-6 pb-24 pt-8 lg:px-8">
         <Breadcrumbs
           items={[
             { label: "Home", href: "/" },
@@ -41,12 +41,13 @@ export default function BootCalculatorPage() {
           ]}
         />
 
-        <div className="space-y-8 pt-8">
-          <header className="space-y-4">
-            <h1 className="font-playfair text-4xl font-bold text-[#2A2A2A] sm:text-5xl">
+        <div className="pt-8">
+          <header className="mb-8">
+            <p className="section-label mb-3">Tool</p>
+            <h1 className="font-serif text-4xl text-mansion-charcoal sm:text-5xl">
               Boot Calculator
             </h1>
-            <p className="text-base text-[#2A2A2A]/75 sm:text-lg">
+            <p className="mt-4 text-base text-mansion-charcoal/70 sm:text-lg">
               Calculate boot including cash received and mortgage relief from your 1031 exchange.
               Boot is any non like kind property or cash received and is subject to immediate
               taxation.
@@ -55,8 +56,8 @@ export default function BootCalculatorPage() {
 
           <BootCalculator />
 
-          <div className="rounded-2xl border border-[#006E7F]/20 bg-[#006E7F]/8 p-6 text-sm text-[#2A2A2A]/80">
-            <p className="font-semibold text-[#006E7F]">Educational content only.</p>
+          <div className="mt-8 border border-mansion-gold/20 bg-mansion-gold/5 p-6 text-sm text-mansion-charcoal/80">
+            <p className="font-semibold text-mansion-gold-dark">Educational content only.</p>
             <p className="mt-2">
               Not tax, legal, or investment advice. Results are estimates only. Consult a
               qualified intermediary and tax advisor before making decisions. A 1031 exchange
@@ -65,33 +66,34 @@ export default function BootCalculatorPage() {
             </p>
           </div>
 
-          <div className="space-y-4 border-t border-[#2A2A2A]/10 pt-8">
-            <h2 className="font-playfair text-2xl font-bold text-[#2A2A2A]">
+          <div className="mt-12 border-t border-gray-200 pt-8">
+            <p className="section-label mb-3">Related</p>
+            <h2 className="font-serif text-2xl text-mansion-charcoal">
               Related Resources
             </h2>
-            <ul className="space-y-2">
+            <ul className="mt-4 space-y-3">
               <li>
                 <Link
                   href="/services/boot-calculation-support"
-                  className="text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                  className="text-mansion-gold hover:text-mansion-gold-dark"
                 >
-                  Boot Calculation Support Services
+                  Boot Calculation Support Services &rarr;
                 </Link>
               </li>
               <li>
                 <Link
                   href="/tools/exchange-cost-estimator"
-                  className="text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                  className="text-mansion-gold hover:text-mansion-gold-dark"
                 >
-                  Exchange Cost Estimator
+                  Exchange Cost Estimator &rarr;
                 </Link>
               </li>
               <li>
                 <Link
                   href="/tools/identification-rules-checker"
-                  className="text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                  className="text-mansion-gold hover:text-mansion-gold-dark"
                 >
-                  Identification Rules Checker
+                  Identification Rules Checker &rarr;
                 </Link>
               </li>
             </ul>
@@ -143,5 +145,3 @@ export default function BootCalculatorPage() {
     </div>
   );
 }
-
-

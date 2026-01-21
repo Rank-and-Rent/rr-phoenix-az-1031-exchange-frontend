@@ -52,8 +52,8 @@ const tools = [
 
 export default function ToolsPage() {
   return (
-    <div className="min-h-screen bg-[#F5F3EF]">
-      <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-8 sm:px-10 lg:px-16">
+    <div className="min-h-screen bg-white">
+      <div className="mx-auto max-w-7xl px-6 pb-24 pt-8 lg:px-8">
         <Breadcrumbs
           items={[
             { label: "Home", href: "/" },
@@ -61,34 +61,33 @@ export default function ToolsPage() {
           ]}
         />
 
-        <section className="space-y-10 pt-8">
-          <header className="max-w-3xl space-y-4">
-            <h1 className="font-playfair text-4xl font-bold text-[#2A2A2A] sm:text-5xl">
+        <section className="pt-8">
+          <header className="mb-12 max-w-3xl">
+            <p className="section-label mb-3">Resources</p>
+            <h1 className="font-serif text-4xl text-mansion-charcoal sm:text-5xl">
               Exchange Tools
             </h1>
-            <p className="text-base text-[#2A2A2A]/75 sm:text-lg">
+            <p className="mt-4 text-base text-mansion-charcoal/70 sm:text-lg">
               Interactive calculators and tools to help {PRIMARY_CITY} investors understand 1031
               exchange requirements, estimate costs, and validate compliance.
             </p>
           </header>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {tools.map((tool) => {
               const Icon = tool.icon;
               return (
                 <Link
                   key={tool.slug}
                   href={`/tools/${tool.slug}`}
-                  className="group flex h-full flex-col justify-between rounded-2xl border border-white/70 bg-white/70 p-6 shadow-[0_12px_40px_rgba(24,24,24,0.07)] transition hover:border-[#E6A445]/40 hover:shadow-[0_18px_48px_rgba(24,24,24,0.10)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                  className="group relative overflow-hidden bg-mansion-navy p-6 text-white transition hover:bg-mansion-navy-light"
                 >
-                  <div>
-                    <Icon className="mb-4 h-10 w-10 text-[#006E7F]" aria-hidden="true" />
-                    <h2 className="font-inter text-xl font-medium text-[#2A2A2A]">
-                      {tool.name}
-                    </h2>
-                    <p className="mt-3 text-sm text-[#2A2A2A]/75">{tool.description}</p>
-                  </div>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#006E7F]">
+                  <Icon className="mb-4 h-10 w-10 text-mansion-gold" aria-hidden="true" />
+                  <h2 className="font-serif text-xl text-white">
+                    {tool.name}
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-white/80">{tool.description}</p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold-light">
                     Use Tool
                     <svg
                       className="h-4 w-4 transition group-hover:translate-x-1"
@@ -105,8 +104,8 @@ export default function ToolsPage() {
             })}
           </div>
 
-          <div className="rounded-2xl border border-[#006E7F]/20 bg-[#006E7F]/8 p-6 text-sm text-[#2A2A2A]/80">
-            <p className="font-semibold text-[#006E7F]">Educational Tools Only</p>
+          <div className="mt-12 border border-mansion-gold/20 bg-mansion-gold/5 p-6 text-sm text-mansion-charcoal/80">
+            <p className="font-semibold text-mansion-gold-dark">Educational Tools Only</p>
             <p className="mt-2">
               These tools provide estimates and educational information only. Results are not tax,
               legal, or investment advice. Consult a qualified intermediary and tax advisor before
@@ -144,4 +143,3 @@ export default function ToolsPage() {
     </div>
   );
 }
-

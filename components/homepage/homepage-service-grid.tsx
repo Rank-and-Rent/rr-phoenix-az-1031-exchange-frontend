@@ -55,22 +55,22 @@ export function HomepageServiceGrid({ services }: HomepageServiceGridProps) {
         }}
         defaultValue={query}
       />
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid gap-px bg-gray-200 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.slice(0, 6).map((service) => (
           <Link
             key={service.slug}
             href={`/services/${service.slug}`}
-            className="group flex h-full flex-col justify-between rounded-2xl border border-white/70 bg-white/80 p-6 shadow-[0_12px_40px_rgba(24,24,24,0.07)] transition hover:border-[#E6A445]/40 hover:shadow-[0_18px_48px_rgba(24,24,24,0.10)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+            className="group flex h-full flex-col justify-between bg-white p-6 transition hover:bg-gray-50"
           >
             <div>
-              <h3 className="text-xl font-semibold text-[#2A2A2A]">
+              <h3 className="font-serif text-xl text-mansion-charcoal">
                 {service.name}
               </h3>
-              <p className="mt-3 text-sm text-[#2A2A2A]/75">
+              <p className="mt-3 text-sm leading-relaxed text-mansion-charcoal/70">
                 {service.shortDescription}
               </p>
             </div>
-            <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#006E7F]">
+            <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold">
               Explore
               <ArrowRightIcon
                 className="h-4 w-4 transition group-hover:translate-x-1"

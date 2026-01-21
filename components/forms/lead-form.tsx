@@ -243,16 +243,17 @@ export function LeadForm() {
     <form
       id="lead-form"
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-[#2A2A2A]/10 bg-white p-8 shadow-lg md:p-10"
+      className="border border-gray-200 bg-white p-8 shadow-editorial md:p-10"
     >
-      <h2 className="mb-6 font-serif text-2xl font-bold text-[#006E7F]">
+      <h2 className="mb-2 font-serif text-3xl text-mansion-charcoal">
         Start Your Exchange Plan
       </h2>
+      <p className="mb-8 text-sm text-mansion-charcoal/60">Fill out the form below and a specialist will contact you within one business day.</p>
       <fieldset disabled={status === "submitting"} className="space-y-6">
         <div className="grid gap-6 md:grid-cols-2">
           <div>
-            <label htmlFor="name" className="mb-2 block text-sm font-medium text-[#2A2A2A]">
-              Name <span className="text-[#E6A445]">*</span>
+            <label htmlFor="name" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-mansion-charcoal/70">
+              Name <span className="text-mansion-gold">*</span>
             </label>
             <input
               id="name"
@@ -262,21 +263,21 @@ export function LeadForm() {
               onChange={handleChange("name")}
               aria-describedby={errors.name ? "name-error" : "name-helper"}
               aria-invalid={!!errors.name}
-              className="w-full rounded-lg border border-[#2A2A2A]/20 bg-white px-4 py-3 text-[#2A2A2A] focus:border-[#006E7F] focus:outline-none focus:ring-2 focus:ring-[#E6A445]"
+              className="w-full border border-gray-200 bg-white px-4 py-3 text-mansion-charcoal focus:border-mansion-gold focus:outline-none focus:ring-1 focus:ring-mansion-gold"
             />
             {errors.name ? (
-              <p id="name-error" className="mt-1 text-sm text-[#E6A445]">
+              <p id="name-error" className="mt-1 text-sm text-mansion-gold">
                 {errors.name}
               </p>
             ) : (
-              <p id="name-helper" className="mt-1 text-xs text-[#2A2A2A]/60">
+              <p id="name-helper" className="mt-1 text-xs text-mansion-charcoal/50">
                 Primary investor or advisor name
               </p>
             )}
           </div>
           <div>
-            <label htmlFor="email" className="mb-2 block text-sm font-medium text-[#2A2A2A]">
-              Email <span className="text-[#E6A445]">*</span>
+            <label htmlFor="email" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-mansion-charcoal/70">
+              Email <span className="text-mansion-gold">*</span>
             </label>
             <input
               id="email"
@@ -286,14 +287,14 @@ export function LeadForm() {
               onChange={handleChange("email")}
               aria-describedby={errors.email ? "email-error" : "email-helper"}
               aria-invalid={!!errors.email}
-              className="w-full rounded-lg border border-[#2A2A2A]/20 bg-white px-4 py-3 text-[#2A2A2A] focus:border-[#006E7F] focus:outline-none focus:ring-2 focus:ring-[#E6A445]"
+              className="w-full border border-gray-200 bg-white px-4 py-3 text-mansion-charcoal focus:border-mansion-gold focus:outline-none focus:ring-1 focus:ring-mansion-gold"
             />
             {errors.email ? (
-              <p id="email-error" className="mt-1 text-sm text-[#E6A445]">
+              <p id="email-error" className="mt-1 text-sm text-mansion-gold">
                 {errors.email}
               </p>
             ) : (
-              <p id="email-helper" className="mt-1 text-xs text-[#2A2A2A]/60">
+              <p id="email-helper" className="mt-1 text-xs text-mansion-charcoal/50">
                 We send a confirmation and documentation checklist
               </p>
             )}
@@ -301,8 +302,8 @@ export function LeadForm() {
         </div>
         <div className="grid gap-6 md:grid-cols-2">
           <div>
-            <label htmlFor="phone" className="mb-2 block text-sm font-medium text-[#2A2A2A]">
-              Phone <span className="text-[#E6A445]">*</span>
+            <label htmlFor="phone" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-mansion-charcoal/70">
+              Phone <span className="text-mansion-gold">*</span>
             </label>
             <input
               id="phone"
@@ -312,21 +313,21 @@ export function LeadForm() {
               onChange={handleChange("phone")}
               aria-describedby={errors.phone ? "phone-error" : "phone-helper"}
               aria-invalid={!!errors.phone}
-              className="w-full rounded-lg border border-[#2A2A2A]/20 bg-white px-4 py-3 text-[#2A2A2A] focus:border-[#006E7F] focus:outline-none focus:ring-2 focus:ring-[#E6A445]"
+              className="w-full border border-gray-200 bg-white px-4 py-3 text-mansion-charcoal focus:border-mansion-gold focus:outline-none focus:ring-1 focus:ring-mansion-gold"
             />
             {errors.phone ? (
-              <p id="phone-error" className="mt-1 text-sm text-[#E6A445]">
+              <p id="phone-error" className="mt-1 text-sm text-mansion-gold">
                 {errors.phone}
               </p>
             ) : (
-              <p id="phone-helper" className="mt-1 text-xs text-[#2A2A2A]/60">
+              <p id="phone-helper" className="mt-1 text-xs text-mansion-charcoal/50">
                 We confirm timelines by phone within one business day
               </p>
             )}
           </div>
           <div>
-            <label htmlFor="city" className="mb-2 block text-sm font-medium text-[#2A2A2A]">
-              City <span className="text-[#E6A445]">*</span>
+            <label htmlFor="city" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-mansion-charcoal/70">
+              City <span className="text-mansion-gold">*</span>
             </label>
             <input
               id="city"
@@ -336,14 +337,14 @@ export function LeadForm() {
               onChange={handleChange("city")}
               aria-describedby={errors.city ? "city-error" : "city-helper"}
               aria-invalid={!!errors.city}
-              className="w-full rounded-lg border border-[#2A2A2A]/20 bg-white px-4 py-3 text-[#2A2A2A] focus:border-[#006E7F] focus:outline-none focus:ring-2 focus:ring-[#E6A445]"
+              className="w-full border border-gray-200 bg-white px-4 py-3 text-mansion-charcoal focus:border-mansion-gold focus:outline-none focus:ring-1 focus:ring-mansion-gold"
             />
             {errors.city ? (
-              <p id="city-error" className="mt-1 text-sm text-[#E6A445]">
+              <p id="city-error" className="mt-1 text-sm text-mansion-gold">
                 {errors.city}
               </p>
             ) : (
-              <p id="city-helper" className="mt-1 text-xs text-[#2A2A2A]/60">
+              <p id="city-helper" className="mt-1 text-xs text-mansion-charcoal/50">
                 Primary metro or submarket
               </p>
             )}
@@ -351,8 +352,8 @@ export function LeadForm() {
         </div>
         <div className="grid gap-6 md:grid-cols-2">
           <div>
-            <label htmlFor="property" className="mb-2 block text-sm font-medium text-[#2A2A2A]">
-              Property Being Sold <span className="text-[#E6A445]">*</span>
+            <label htmlFor="property" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-mansion-charcoal/70">
+              Property Being Sold <span className="text-mansion-gold">*</span>
             </label>
             <input
               id="property"
@@ -362,21 +363,21 @@ export function LeadForm() {
               onChange={handleChange("property")}
               aria-describedby={errors.property ? "property-error" : "property-helper"}
               aria-invalid={!!errors.property}
-              className="w-full rounded-lg border border-[#2A2A2A]/20 bg-white px-4 py-3 text-[#2A2A2A] focus:border-[#006E7F] focus:outline-none focus:ring-2 focus:ring-[#E6A445]"
+              className="w-full border border-gray-200 bg-white px-4 py-3 text-mansion-charcoal focus:border-mansion-gold focus:outline-none focus:ring-1 focus:ring-mansion-gold"
             />
             {errors.property ? (
-              <p id="property-error" className="mt-1 text-sm text-[#E6A445]">
+              <p id="property-error" className="mt-1 text-sm text-mansion-gold">
                 {errors.property}
               </p>
             ) : (
-              <p id="property-helper" className="mt-1 text-xs text-[#2A2A2A]/60">
+              <p id="property-helper" className="mt-1 text-xs text-mansion-charcoal/50">
                 Include property type, location, and estimated value
               </p>
             )}
           </div>
           <div>
-            <label htmlFor="estimatedCloseDate" className="mb-2 block text-sm font-medium text-[#2A2A2A]">
-              Estimated Close Date <span className="text-[#E6A445]">*</span>
+            <label htmlFor="estimatedCloseDate" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-mansion-charcoal/70">
+              Estimated Close Date <span className="text-mansion-gold">*</span>
             </label>
             <input
               id="estimatedCloseDate"
@@ -386,22 +387,22 @@ export function LeadForm() {
               onChange={handleChange("estimatedCloseDate")}
               aria-describedby={errors.estimatedCloseDate ? "date-error" : "date-helper"}
               aria-invalid={!!errors.estimatedCloseDate}
-              className="w-full rounded-lg border border-[#2A2A2A]/20 bg-white px-4 py-3 text-[#2A2A2A] focus:border-[#006E7F] focus:outline-none focus:ring-2 focus:ring-[#E6A445]"
+              className="w-full border border-gray-200 bg-white px-4 py-3 text-mansion-charcoal focus:border-mansion-gold focus:outline-none focus:ring-1 focus:ring-mansion-gold"
             />
             {errors.estimatedCloseDate ? (
-              <p id="date-error" className="mt-1 text-sm text-[#E6A445]">
+              <p id="date-error" className="mt-1 text-sm text-mansion-gold">
                 {errors.estimatedCloseDate}
               </p>
             ) : (
-              <p id="date-helper" className="mt-1 text-xs text-[#2A2A2A]/60">
+              <p id="date-helper" className="mt-1 text-xs text-mansion-charcoal/50">
                 Determines your 45 day and 180 day milestones
               </p>
             )}
           </div>
         </div>
         <div>
-          <label htmlFor="message" className="mb-2 block text-sm font-medium text-[#2A2A2A]">
-            Message <span className="text-[#E6A445]">*</span>
+          <label htmlFor="message" className="mb-2 block text-xs font-semibold uppercase tracking-wider text-mansion-charcoal/70">
+            Message <span className="text-mansion-gold">*</span>
           </label>
           <textarea
             id="message"
@@ -411,14 +412,14 @@ export function LeadForm() {
             onChange={handleChange("message")}
             aria-describedby={errors.message ? "message-error" : "message-helper"}
             aria-invalid={!!errors.message}
-            className="w-full rounded-lg border border-[#2A2A2A]/20 bg-white px-4 py-3 text-[#2A2A2A] focus:border-[#006E7F] focus:outline-none focus:ring-2 focus:ring-[#E6A445]"
+            className="w-full border border-gray-200 bg-white px-4 py-3 text-mansion-charcoal focus:border-mansion-gold focus:outline-none focus:ring-1 focus:ring-mansion-gold"
           />
           {errors.message ? (
-            <p id="message-error" className="mt-1 text-sm text-[#E6A445]">
+            <p id="message-error" className="mt-1 text-sm text-mansion-gold">
               {errors.message}
             </p>
           ) : (
-            <p id="message-helper" className="mt-1 text-xs text-[#2A2A2A]/60">
+            <p id="message-helper" className="mt-1 text-xs text-mansion-charcoal/50">
               Outline goals, replacement preferences, or coordination needs
             </p>
           )}
@@ -431,16 +432,16 @@ export function LeadForm() {
         <button
           type="submit"
           disabled={status === "submitting" || !!(siteKey && !turnstileReady)}
-          className="w-full rounded-full bg-[#E6A445] px-8 py-4 text-base font-semibold text-[#2A2A2A] shadow-lg transition hover:bg-[#C88735] focus:outline-none focus:ring-2 focus:ring-[#E6A445] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full bg-mansion-gold px-8 py-4 text-base font-semibold text-white transition hover:bg-mansion-gold-dark focus:outline-none focus:ring-2 focus:ring-mansion-gold focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {status === "submitting" ? "Submitting..." : "Submit Consultation Request"}
         </button>
-        <p className="text-xs text-[#2A2A2A]/60">Educational content only. Not tax or legal advice.</p>
+        <p className="text-center text-xs text-mansion-charcoal/50">Educational content only. Not tax or legal advice.</p>
         {feedback && (
           <p
             role="status"
             aria-live="polite"
-            className={`text-sm font-medium ${status === "success" ? "text-[#006E7F]" : "text-[#E6A445]"}`}
+            className={`text-center text-sm font-medium ${status === "success" ? "text-green-600" : "text-mansion-gold"}`}
           >
             {feedback}
           </p>

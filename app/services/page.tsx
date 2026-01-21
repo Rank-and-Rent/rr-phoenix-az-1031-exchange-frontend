@@ -22,8 +22,8 @@ export default function ServicesPage() {
   const services = servicesData;
 
   return (
-    <div className="min-h-screen bg-[#F5F3EF]">
-      <div className="relative mx-auto max-w-6xl px-6 pb-24 pt-8 sm:px-10 lg:px-16">
+    <div className="min-h-screen bg-white">
+      <div className="mx-auto max-w-7xl px-6 pb-24 pt-8 lg:px-8">
         <Breadcrumbs
           items={[
             { label: "Home", href: "/" },
@@ -31,83 +31,78 @@ export default function ServicesPage() {
           ]}
         />
 
-        <section className="space-y-10 pt-8">
-          <header className="max-w-3xl space-y-4">
-            <h1 className="font-playfair text-4xl font-bold text-[#2A2A2A] sm:text-5xl">
+        <section className="pt-8">
+          <header className="mb-12 max-w-3xl">
+            <p className="section-label mb-3">Our Services</p>
+            <h1 className="font-serif text-4xl text-mansion-charcoal sm:text-5xl">
               Exchange Services
             </h1>
-            <p className="text-base text-[#2A2A2A]/75 sm:text-lg">
+            <p className="mt-4 text-base text-mansion-charcoal/70 sm:text-lg">
               Comprehensive support for {PRIMARY_CITY} investors managing 1031
               exchanges. From replacement property identification to deadline
               tracking and compliance coordination.
             </p>
           </header>
 
-          <div className="space-y-6">
-            <div
-              id="services-grid"
-              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-            >
-              {services.map((service) => (
-                <Link
-                  key={service.slug}
-                  href={`/services/${service.slug}`}
-                  className="group flex h-full flex-col justify-between rounded-2xl border border-white/70 bg-white/70 p-6 shadow-[0_12px_40px_rgba(24,24,24,0.07)] transition hover:border-[#E6A445]/40 hover:shadow-[0_18px_48px_rgba(24,24,24,0.10)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  <div>
-                    <h2 className="font-inter text-xl font-medium text-[#2A2A2A]">
-                      {service.name}
-                    </h2>
-                    <p className="mt-3 text-sm text-[#2A2A2A]/75">
-                      {service.short}
-                    </p>
-                  </div>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#006E7F]">
-                    Learn more
-                    <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              ))}
-            </div>
+          <div
+            id="services-grid"
+            className="grid gap-px bg-gray-200 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {services.map((service) => (
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className="group flex h-full flex-col justify-between bg-white p-6 transition hover:bg-gray-50"
+              >
+                <div>
+                  <h2 className="font-serif text-xl text-mansion-charcoal">
+                    {service.name}
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-mansion-charcoal/70">
+                    {service.short}
+                  </p>
+                </div>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold">
+                  Learn more
+                  <ArrowRightIcon className="h-4 w-4 transition group-hover:translate-x-1" />
+                </span>
+              </Link>
+            ))}
           </div>
 
           <div
             id="no-results-cta"
-            className="hidden rounded-3xl border border-white/70 bg-white/90 p-10 shadow-[0_32px_120px_rgba(24,24,24,0.08)]"
+            className="mt-12 hidden border border-gray-200 bg-white p-10 text-center shadow-editorial"
           >
-            <div className="space-y-6 text-center">
-              <h2 className="font-playfair text-3xl font-bold text-[#2A2A2A]">
-                We can help with that
-              </h2>
-              <p className="text-base text-[#2A2A2A]/75">
-                Our team specializes in custom exchange solutions for {PRIMARY_CITY} investors.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#E6A445] px-6 py-3 text-base font-semibold text-[#2A2A2A] transition hover:bg-[#C88735] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-              >
-                Contact Us
-                <ArrowRightIcon className="h-5 w-5" />
-              </Link>
-            </div>
+            <h2 className="font-serif text-3xl text-mansion-charcoal">
+              We can help with that
+            </h2>
+            <p className="mt-4 text-base text-mansion-charcoal/70">
+              Our team specializes in custom exchange solutions for {PRIMARY_CITY} investors.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-6 inline-flex items-center justify-center gap-2 bg-mansion-gold px-6 py-3 text-base font-semibold text-white transition hover:bg-mansion-gold-dark"
+            >
+              Contact Us
+              <ArrowRightIcon className="h-5 w-5" />
+            </Link>
           </div>
 
-          <div className="rounded-3xl border border-white/70 bg-white/90 p-10 shadow-[0_32px_120px_rgba(24,24,24,0.08)]">
-            <div className="space-y-6 text-center">
-              <h2 className="font-playfair text-3xl font-bold text-[#2A2A2A]">
-                Ready to discuss your exchange?
-              </h2>
-              <p className="text-base text-[#2A2A2A]/75">
-                Connect with our team to discuss your 1031 exchange needs and replacement property objectives.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#E6A445] px-6 py-3 text-base font-semibold text-[#2A2A2A] transition hover:bg-[#C88735] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-              >
-                Contact Us
-                <ArrowRightIcon className="h-5 w-5" />
-              </Link>
-            </div>
+          <div className="mt-16 border border-gray-200 bg-white p-10 text-center shadow-editorial">
+            <h2 className="font-serif text-3xl text-mansion-charcoal">
+              Ready to discuss your exchange?
+            </h2>
+            <p className="mt-4 text-base text-mansion-charcoal/70">
+              Connect with our team to discuss your 1031 exchange needs and replacement property objectives.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-6 inline-flex items-center justify-center gap-2 bg-mansion-gold px-6 py-3 text-base font-semibold text-white transition hover:bg-mansion-gold-dark"
+            >
+              Contact Us
+              <ArrowRightIcon className="h-5 w-5" />
+            </Link>
           </div>
         </section>
       </div>
@@ -140,4 +135,3 @@ export default function ServicesPage() {
     </div>
   );
 }
-

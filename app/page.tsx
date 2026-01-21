@@ -278,151 +278,153 @@ const faqJsonLd = {
 
 export default function Page() {
   return (
-    <div className="relative bg-[#F5F3EF] text-[#2A2A2A]">
-      <main className="relative mx-auto flex max-w-6xl flex-col gap-20 px-6 pb-24 pt-16 sm:px-10 lg:px-16">
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#F5F3EF] via-white to-[#F5F3EF]/70" />
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -right-24 top-20 h-96 w-96 rounded-full bg-[#E6A445]/20 blur-3xl" />
-            <div className="absolute -left-32 bottom-10 h-[26rem] w-[26rem] rounded-full bg-[#006E7F]/10 blur-[160px]" />
-          </div>
-        </div>
-
-        <section
-          
-          className="relative overflow-hidden rounded-3xl border border-white/60 bg-white/80 p-10 shadow-[0_40px_120px_rgba(25,25,25,0.08)] backdrop-blur-md sm:p-14"
-        >
-          <div className="absolute inset-0 -z-10">
+    <div className="relative bg-white text-mansion-charcoal">
+      <main className="relative">
+        {/* Hero Section - Mansion Global full-bleed style */}
+        <section className="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
+          <div className="absolute inset-0">
             <Image
               src="/1031-exchange-of-phoenix-az.jpg"
               alt=""
               fill
-              className="object-cover opacity-20"
+              className="object-cover"
               sizes="100vw"
               priority
             />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent" />
           </div>
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            <div className="space-y-8">
-              <span
-                className="inline-flex items-center gap-2 rounded-full bg-[#006E7F]/10 px-4 py-2 text-sm font-medium text-[#006E7F]"
-              >
-                <PhoneIcon className="h-4 w-4" aria-hidden="true" />
-                Nationwide Single Tenant NNN Retail Property Specialists
-              </span>
-              <div className="space-y-4">
-                <h1 className="text-4xl leading-tight text-[#2A2A2A] sm:text-5xl lg:text-6xl">
+          
+          {/* Hero Content Overlay */}
+          <div className="relative z-10 flex h-full items-center">
+            <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
+              <div className="max-w-2xl">
+                <span className="section-label mb-4 inline-block text-white/80">
+                  Nationwide Single Tenant NNN Retail Property Specialists
+                </span>
+                <h1 className="font-serif text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
                   Find Single Tenant NNN Retail Properties for Your 1031 Exchange.
                 </h1>
-                <p className="text-lg text-[#2A2A2A]/80 sm:text-xl">
+                <p className="mt-6 text-lg text-white/90 sm:text-xl">
                   We help 1031 exchange buyers quickly find high-quality single tenant net lease retail properties nationwide. Hands-off ownership where tenants handle taxes, insurance, and maintenance. You collect predictable rent.
                 </p>
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                  <Link
+                    href={`tel:${PHONE_NUMBER_URI}`}
+                    className="inline-flex items-center justify-center gap-2 bg-mansion-gold px-8 py-4 text-base font-semibold text-white transition hover:bg-mansion-gold-dark"
+                    aria-label={`Call ${PHONE_NUMBER}`}
+                  >
+                    <PhoneIcon className="h-5 w-5" aria-hidden="true" />
+                    Call {PHONE_NUMBER}
+                  </Link>
+                  <Link
+                    href="#lead-form"
+                    className="inline-flex items-center justify-center gap-2 border-2 border-white bg-transparent px-8 py-4 text-base font-semibold text-white transition hover:bg-white hover:text-mansion-charcoal"
+                  >
+                    Start My Exchange
+                    <ArrowRightIcon className="h-5 w-5" aria-hidden="true" />
+                  </Link>
+                </div>
               </div>
-              <div className="flex flex-col gap-4 sm:flex-row">
+            </div>
+          </div>
+
+          {/* Navigation Arrows - Mansion Global style */}
+          <button className="absolute left-4 top-1/2 z-20 -translate-y-1/2 flex h-12 w-12 items-center justify-center bg-white/90 text-mansion-charcoal transition hover:bg-white" aria-label="Previous">
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+          </button>
+          <button className="absolute right-4 top-1/2 z-20 -translate-y-1/2 flex h-12 w-12 items-center justify-center bg-white/90 text-mansion-charcoal transition hover:bg-white" aria-label="Next">
+            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </section>
+
+        {/* Content container */}
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+
+        {/* TOP STORIES Style Section - Why Choose Us */}
+        <section className="border-b border-gray-200 pb-16">
+          <p className="section-label mb-6">Why Choose Us</p>
+          <div className="grid gap-8 lg:grid-cols-2">
+            {/* Featured large card */}
+            <div className="group">
+              <h2 className="font-serif text-3xl text-mansion-charcoal sm:text-4xl lg:text-5xl">
+                Why 1031 Exchange Buyers Choose Us.
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-mansion-charcoal/70">
+                We specialize in helping unrepresented 1031 exchange buyers quickly find high-quality single tenant NNN retail properties nationwide. Fast property identification, trusted guidance, and speed to close.
+              </p>
+              <div className="mt-6 border-t border-gray-200 pt-6 text-sm text-mansion-charcoal/60">
+                A 1031 exchange defers federal and Arizona income tax on qualifying
+                real property. It does not remove state or county transfer taxes.{" "}
                 <Link
-                  href={`tel:${PHONE_NUMBER_URI}`}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#006E7F] px-6 py-3 text-base font-medium text-white transition hover:bg-[#005563] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                  aria-label={`Call ${PHONE_NUMBER}`}
+                  href="https://azdor.gov/transaction-privilege-tax"
+                  className="font-medium text-mansion-gold hover:text-mansion-gold-dark"
                 >
-                  <PhoneIcon className="h-5 w-5" aria-hidden="true" />
-                  Call {PHONE_NUMBER}
-                </Link>
-                <Link
-                  href="#lead-form"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-[#2A2A2A]/15 bg-white/70 px-6 py-3 text-base font-medium text-[#2A2A2A] transition hover:border-[#006E7F] hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-                >
-                  Start My Exchange
-                  <ArrowRightIcon className="h-5 w-5" aria-hidden="true" />
+                  Review Arizona Department of Revenue guidance
                 </Link>
               </div>
+            </div>
+            {/* Feature cards grid */}
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                {
+                  title: "Nationwide NNN Retail Network",
+                  description:
+                    "Access to single tenant net lease retail properties across all 50 states. Convenience, QSR, pharmacy, and essential retail brands.",
+                  icon: MapPinIcon,
+                },
+                {
+                  title: "Fast Property Identification",
+                  description:
+                    "Quick sourcing of replacement properties that match your timeline, credit requirements, lease terms, and yield targets.",
+                  icon: SearchIcon,
+                },
+                {
+                  title: "Hands-Off Ownership",
+                  description:
+                    "Triple-net properties where tenants handle taxes, insurance, and maintenance. Collect rent without day-to-day management.",
+                  icon: ShieldCheckIcon,
+                },
+                {
+                  title: "45-Day Deadline Support",
+                  description:
+                    "Structured identification strategies to meet your 45-day deadline. Pre-qualified properties ready for immediate consideration.",
+                  icon: ClockIcon,
+                },
+              ].map((feature) => (
+                <div
+                  key={feature.title}
+                  className="group border border-gray-100 bg-white p-5 transition hover:border-mansion-gold/30 hover:shadow-editorial"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center bg-mansion-gold/10 text-mansion-gold">
+                      <feature.icon className="h-5 w-5" aria-hidden="true" />
+                    </div>
+                    <h3 className="font-serif text-lg text-mansion-charcoal">
+                      {feature.title}
+                    </h3>
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed text-mansion-charcoal/70">
+                    {feature.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        <section  className="space-y-10">
-          <header className="max-w-3xl space-y-4">
-            <h2 className="text-3xl text-[#2A2A2A] sm:text-4xl">
-              Why 1031 Exchange Buyers Choose Us.
-            </h2>
-            <p className="text-base text-[#2A2A2A]/75">
-              We specialize in helping unrepresented 1031 exchange buyers quickly find high-quality single tenant NNN retail properties nationwide. Fast property identification, trusted guidance, and speed to close.
-            </p>
-          </header>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: "Nationwide NNN Retail Network",
-                description:
-                  "Access to single tenant net lease retail properties across all 50 states. Convenience, QSR, pharmacy, and essential retail brands.",
-                icon: MapPinIcon,
-              },
-              {
-                title: "Fast Property Identification",
-                description:
-                  "Quick sourcing of replacement properties that match your timeline, credit requirements, lease terms, and yield targets.",
-                icon: SearchIcon,
-              },
-              {
-                title: "Hands-Off Ownership",
-                description:
-                  "Triple-net properties where tenants handle taxes, insurance, and maintenance. Collect rent without day-to-day management.",
-                icon: ShieldCheckIcon,
-              },
-              {
-                title: "45-Day Deadline Support",
-                description:
-                  "Structured identification strategies to meet your 45-day deadline. Pre-qualified properties ready for immediate consideration.",
-                icon: ClockIcon,
-              },
-              {
-                title: "Credit Tenant Focus",
-                description:
-                  "Investment-grade tenants with strong credit ratings. Stable brands with predictable income and minimal risk.",
-                icon: LandmarkIcon,
-              },
-            ].map((feature) => (
-              <div
-                key={feature.title}
-                className="group flex h-full flex-col justify-between rounded-2xl border border-white/70 bg-white/70 p-6 shadow-[0_12px_40px_rgba(24,24,24,0.06)] transition hover:border-[#E6A445]/40"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex size-12 items-center justify-center rounded-full bg-[#F5F3EF] text-[#006E7F]">
-                    <feature.icon className="size-5" aria-hidden="true" />
-                  </div>
-                  <h3 className="text-xl text-[#2A2A2A]">
-                    {feature.title}
-                  </h3>
-                </div>
-                <p className="mt-4 text-sm text-[#2A2A2A]/75">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="rounded-2xl border border-[#2A2A2A]/10 bg-white/70 p-6 text-sm text-[#2A2A2A]/75">
-            A 1031 exchange defers federal and Arizona income tax on qualifying
-            real property. It does not remove state or county transfer taxes.{" "}
-            <Link
-              href="https://azdor.gov/transaction-privilege-tax"
-              className="font-semibold text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-            >
-              Review Arizona Department of Revenue guidance
-            </Link>
-            .
-          </div>
-        </section>
-
-        <section  className="space-y-10">
-          <header className="max-w-3xl space-y-4">
-            <h2 className="text-3xl text-[#2A2A2A] sm:text-4xl">
+        {/* How It Works Section - Editorial style */}
+        <section className="border-b border-gray-200 py-16">
+          <p className="section-label mb-6">The Process</p>
+          <header className="mb-10 max-w-3xl">
+            <h2 className="font-serif text-3xl text-mansion-charcoal sm:text-4xl">
               How the 1031 Exchange Works.
             </h2>
-            <p className="text-base text-[#2A2A2A]/75">
+            <p className="mt-4 text-base text-mansion-charcoal/70">
               Each stage demands clear documentation, segregation of proceeds,
               and milestone precision.
             </p>
           </header>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-px bg-gray-200 md:grid-cols-3">
             {[
               {
                 title: "Sell the Relinquished Property",
@@ -445,64 +447,66 @@ export default function Page() {
             ].map((step, index) => (
               <div
                 key={step.title}
-                className="relative rounded-2xl border border-white/70 bg-white/70 p-6 shadow-[0_12px_40px_rgba(24,24,24,0.08)]"
+                className="relative bg-white p-8"
               >
                 <div className="flex items-center gap-4">
-                  <div className="flex size-12 items-center justify-center rounded-full bg-[#006E7F]/10 text-[#006E7F]">
-                    <step.icon className="size-5" aria-hidden="true" />
-                  </div>
-                  <span className="text-sm font-semibold uppercase tracking-wide text-[#E6A445]">
-                    Step {index + 1}
+                  <span className="font-serif text-4xl text-mansion-gold">
+                    0{index + 1}
                   </span>
+                  <div className="flex h-10 w-10 items-center justify-center bg-mansion-gold/10 text-mansion-gold">
+                    <step.icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
                 </div>
-                <h3 className="mt-4 text-xl text-[#2A2A2A]">
+                <h3 className="mt-6 font-serif text-xl text-mansion-charcoal">
                   {step.title}
                 </h3>
-                <p className="mt-3 text-sm text-[#2A2A2A]/75">
+                <p className="mt-3 text-sm text-mansion-charcoal/70">
                   {step.description}
                 </p>
               </div>
             ))}
           </div>
-          <div className="flex flex-col gap-4 rounded-2xl border border-[#006E7F]/20 bg-[#006E7F]/8 p-6 text-sm text-[#2A2A2A]/80 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-8 flex flex-col gap-4 border border-mansion-gold/20 bg-mansion-gold/5 p-6 text-sm text-mansion-charcoal/80 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="font-semibold text-[#006E7F]">
+              <p className="font-semibold text-mansion-gold-dark">
                 Learn more in IRS Form 8824 and Like-Kind Property rules.
               </p>
-              <div className="mt-2 flex flex-wrap gap-3">
+              <div className="mt-2 flex flex-wrap gap-4">
                 <Link
                   href="https://www.irs.gov/forms-pubs/about-form-8824"
-                  className="inline-flex items-center gap-1 text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                  className="text-mansion-gold hover:text-mansion-gold-dark"
                 >
-                  IRS Form 8824
+                  IRS Form 8824 &rarr;
                 </Link>
                 <Link
                   href="https://www.irs.gov/businesses/small-businesses-self-employed/like-kind-exchanges-real-estate-tax-tips"
-                  className="inline-flex items-center gap-1 text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                  className="text-mansion-gold hover:text-mansion-gold-dark"
                 >
-                  IRS Like-Kind Exchange Tips
+                  IRS Like-Kind Exchange Tips &rarr;
                 </Link>
               </div>
             </div>
-            <p className="text-xs text-[#2A2A2A]/70">
+            <p className="text-xs text-mansion-charcoal/60">
               See Rev. Proc. 2008-16 for vacation home safe harbor.
             </p>
           </div>
         </section>
 
-        <section  className="space-y-10">
-          <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div className="max-w-2xl space-y-3">
-              <h2 className="text-3xl text-[#2A2A2A] sm:text-4xl">
+        {/* Services Section - Mansion Global editorial style */}
+        <section className="border-b border-gray-200 py-16">
+          <header className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-2xl">
+              <p className="section-label mb-3">Our Services</p>
+              <h2 className="font-serif text-3xl text-mansion-charcoal sm:text-4xl">
                 NNN Property Sourcing Services.
               </h2>
-              <p className="text-base text-[#2A2A2A]/75">
+              <p className="mt-4 text-base text-mansion-charcoal/70">
                 Fast property identification and deal flow for 1031 exchange buyers seeking single tenant NNN retail properties. Nationwide inventory and expert guidance.
               </p>
             </div>
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold hover:text-mansion-gold-dark"
             >
               View all services
               <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
@@ -511,158 +515,179 @@ export default function Page() {
           <HomepageServiceGrid services={highlightedServices as Service[]} />
         </section>
 
-        <section  className="space-y-10">
-          <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <div className="max-w-2xl space-y-3">
-              <h2 className="text-3xl text-[#2A2A2A] sm:text-4xl">
+        {/* Property Types - Mansion Global "Latest in Lifestyle" horizontal scroll style */}
+        <section className="border-b border-gray-200 py-16">
+          <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-2xl">
+              <p className="section-label mb-3">Property Types</p>
+              <h2 className="font-serif text-3xl text-mansion-charcoal sm:text-4xl">
                 Single Tenant NNN Retail Property Types.
               </h2>
-              <p className="text-base text-[#2A2A2A]/75">
+              <p className="mt-4 text-base text-mansion-charcoal/70">
                 High-quality single tenant net lease retail properties nationwide. Credit tenants, long-term leases, and hands-off ownership for 1031 exchange buyers.
               </p>
             </div>
             <Link
               href="/property-types"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold hover:text-mansion-gold-dark"
             >
               Explore property types
               <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
             </Link>
           </header>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {propertyTypes.map((property) => (
-              <Link
-                key={property.slug}
-                href={`/property-types/${property.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/70 bg-white/70 shadow-[0_12px_44px_rgba(24,24,24,0.07)] transition hover:border-[#E6A445]/40 hover:shadow-[0_18px_52px_rgba(24,24,24,0.09)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-              >
-                <div className="relative aspect-video w-full overflow-hidden">
-                  <Image
-                    src={getPropertyTypeImageSrc(property.slug)}
-                    alt={property.title}
-                    fill
-                    className="object-cover transition group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col justify-between p-6">
-                  <div>
-                    <h3 className="text-xl text-[#2A2A2A]">
-                      {property.title}
-                    </h3>
-                    <p className="mt-3 text-sm text-[#2A2A2A]/75">
+          
+          {/* Horizontal scrolling carousel - Mansion Global style */}
+          <div className="relative -mx-6 lg:-mx-8">
+            <div className="mansion-scroll flex gap-4 overflow-x-auto px-6 pb-4 lg:px-8">
+              {propertyTypes.map((property) => (
+                <Link
+                  key={property.slug}
+                  href={`/property-types/${property.slug}`}
+                  className="group flex-none"
+                  style={{ width: 'calc(33.333% - 1rem)', minWidth: '280px' }}
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
+                    <Image
+                      src={getPropertyTypeImageSrc(property.slug)}
+                      alt={property.title}
+                      fill
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-mansion-gold">
+                        NNN Retail
+                      </p>
+                      <h3 className="font-serif text-xl text-white">
+                        {property.title}
+                      </h3>
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <p className="text-sm leading-relaxed text-mansion-charcoal/70">
                       {property.benefit}
                     </p>
                   </div>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-[#006E7F]">
-                    Learn more
-                    <ArrowRightIcon
-                      className="h-4 w-4 transition group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
+            {/* Carousel navigation arrows */}
+            <button className="absolute left-2 top-1/3 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white shadow-editorial transition hover:shadow-editorial-hover lg:left-4" aria-label="Previous">
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button className="absolute right-2 top-1/3 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center bg-white shadow-editorial transition hover:shadow-editorial-hover lg:right-4" aria-label="Next">
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </button>
           </div>
         </section>
 
-        <section  className="space-y-6">
-          <h2 className="text-3xl text-[#2A2A2A] sm:text-4xl">
-            Nationwide Single Tenant NNN Retail Properties.
-          </h2>
-          <p className="max-w-3xl text-base text-[#2A2A2A]/75">
-            We help 1031 exchange buyers nationwide find single tenant net lease retail properties. From Phoenix to New York, we source high-quality NNN properties with credit tenants, long-term leases, and hands-off ownership structures.
-          </p>
+        {/* Explore Top Markets - Mansion Global style city cards */}
+        <section className="border-b border-gray-200 py-16">
+          <header className="mb-8">
+            <p className="section-label mb-3">Explore Top Markets</p>
+            <h2 className="font-serif text-3xl text-mansion-charcoal sm:text-4xl">
+              Nationwide Single Tenant NNN Retail Properties.
+            </h2>
+            <p className="mt-4 max-w-3xl text-base text-mansion-charcoal/70">
+              We help 1031 exchange buyers nationwide find single tenant net lease retail properties. From Phoenix to New York, we source high-quality NNN properties with credit tenants, long-term leases, and hands-off ownership structures.
+            </p>
+          </header>
           <HomepageServiceArea locations={locations} />
         </section>
 
-        <section  className="grid gap-6 md:grid-cols-2">
-          <Link
-            href="/resources/calculator"
-            className="group flex h-full flex-col justify-between rounded-2xl border border-white/70 bg-white/80 p-6 shadow-[0_12px_44px_rgba(24,24,24,0.07)] transition hover:border-[#E6A445]/40 hover:shadow-[0_18px_52px_rgba(24,24,24,0.09)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-          >
-            <div className="flex items-center gap-4">
-              <div className="flex size-12 items-center justify-center rounded-full bg-[#006E7F]/10 text-[#006E7F]">
-                <CalculatorIcon className="h-5 w-5" aria-hidden="true" />
+        {/* Resources Section - Editorial style cards */}
+        <section className="py-16">
+          <p className="section-label mb-8">Resources</p>
+          <div className="grid gap-px bg-gray-200 md:grid-cols-2">
+            <Link
+              href="/resources/calculator"
+              className="group flex h-full flex-col justify-between bg-white p-8 transition hover:bg-gray-50"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center bg-mansion-gold/10 text-mansion-gold">
+                  <CalculatorIcon className="h-6 w-6" aria-hidden="true" />
+                </div>
+                <h3 className="font-serif text-2xl text-mansion-charcoal">
+                  Capital Gains Estimator
+                </h3>
               </div>
-              <h3 className="text-xl text-[#2A2A2A]">
-                Capital Gains Estimator
-              </h3>
-            </div>
-            <p className="mt-4 text-sm text-[#2A2A2A]/75">
-              Model potential liability, boot exposure, and reinvestment targets
-              before committing to the exchange.
-            </p>
-            <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[#006E7F]">
-              Open estimator
-              <ArrowRightIcon
-                className="h-4 w-4 transition group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </span>
-          </Link>
-          <Link
-            href="/resources/timeline"
-            className="group flex h-full flex-col justify-between rounded-2xl border border-white/70 bg-white/80 p-6 shadow-[0_12px_44px_rgba(24,24,24,0.07)] transition hover:border-[#E6A445]/40 hover:shadow-[0_18px_52px_rgba(24,24,24,0.09)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
-          >
-            <div className="flex items-center gap-4">
-              <div className="flex size-12 items-center justify-center rounded-full bg-[#006E7F]/10 text-[#006E7F]">
-                <ClockIcon className="h-5 w-5" aria-hidden="true" />
+              <p className="mt-4 text-sm text-mansion-charcoal/70">
+                Model potential liability, boot exposure, and reinvestment targets
+                before committing to the exchange.
+              </p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold">
+                Open estimator
+                <ArrowRightIcon
+                  className="h-4 w-4 transition group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </span>
+            </Link>
+            <Link
+              href="/resources/timeline"
+              className="group flex h-full flex-col justify-between bg-white p-8 transition hover:bg-gray-50"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center bg-mansion-gold/10 text-mansion-gold">
+                  <ClockIcon className="h-6 w-6" aria-hidden="true" />
+                </div>
+                <h3 className="font-serif text-2xl text-mansion-charcoal">
+                  Timeline Reminders
+                </h3>
               </div>
-              <h3 className="text-xl text-[#2A2A2A]">
-                Timeline Reminders
-              </h3>
-            </div>
-            <p className="mt-4 text-sm text-[#2A2A2A]/75">
-              Receive calendar prompts for the 45 day identification and 180 day
-              completion milestones.
-            </p>
-            <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[#006E7F]">
-              Schedule reminders
-              <ArrowRightIcon
-                className="h-4 w-4 transition group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-            </span>
-          </Link>
+              <p className="mt-4 text-sm text-mansion-charcoal/70">
+                Receive calendar prompts for the 45 day identification and 180 day
+                completion milestones.
+              </p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold">
+                Schedule reminders
+                <ArrowRightIcon
+                  className="h-4 w-4 transition group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </span>
+            </Link>
+          </div>
         </section>
 
-        <section  className="space-y-8">
+        {/* Widgets Section */}
+        <section className="border-b border-gray-200 py-16">
+          <p className="section-label mb-8">Planning Tools</p>
           <div className="grid gap-6 lg:grid-cols-2">
             <DeadlineCalculator />
             <TimelineTracker />
           </div>
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="mt-6 grid gap-6 lg:grid-cols-2">
             <IdentificationRules />
             <IdentificationLetterHelper />
           </div>
         </section>
 
-        <section  className="space-y-8">
-          <header className="space-y-4">
-            <h2 className="font-playfair text-3xl font-bold text-[#2A2A2A] sm:text-4xl">
+        {/* Exchange Tools Section - Mansion Global featured style */}
+        <section className="border-b border-gray-200 py-16">
+          <header className="mb-10">
+            <p className="section-label mb-3">Exchange Tools</p>
+            <h2 className="font-serif text-3xl text-mansion-charcoal sm:text-4xl">
               Exchange Tools
             </h2>
-            <p className="text-base text-[#2A2A2A]/75">
+            <p className="mt-4 text-base text-mansion-charcoal/70">
               Interactive calculators to help you understand boot, estimate costs, and validate
               identification compliance.
             </p>
           </header>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <Link
               href="/tools/boot-calculator"
-              className="group flex h-full flex-col justify-between rounded-2xl border border-white/70 bg-gradient-to-br from-[#006E7F] to-[#005563] p-6 text-white shadow-[0_12px_44px_rgba(24,24,24,0.07)] transition hover:-translate-y-1 hover:border-[#E6A445]/40 hover:shadow-[0_18px_52px_rgba(24,24,24,0.09)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+              className="group relative overflow-hidden bg-mansion-navy p-6 text-white transition hover:bg-mansion-navy-light"
             >
-              <div>
-                <ScaleIcon className="mb-4 h-10 w-10 text-[#E6A445]" aria-hidden="true" />
-                <h3 className="mb-2 text-xl font-semibold text-white">Boot Calculator</h3>
-                <p className="text-sm text-white/90">
-                  Calculate boot including cash received and mortgage relief, and estimate tax
-                  implications.
-                </p>
-              </div>
-              <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white">
+              <ScaleIcon className="mb-4 h-10 w-10 text-mansion-gold" aria-hidden="true" />
+              <h3 className="mb-2 font-serif text-xl text-white">Boot Calculator</h3>
+              <p className="text-sm text-white/80">
+                Calculate boot including cash received and mortgage relief, and estimate tax
+                implications.
+              </p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold-light">
                 Use Calculator
                 <ArrowRightIcon
                   className="h-4 w-4 transition group-hover:translate-x-1"
@@ -672,17 +697,15 @@ export default function Page() {
             </Link>
             <Link
               href="/tools/exchange-cost-estimator"
-              className="group flex h-full flex-col justify-between rounded-2xl border border-white/70 bg-gradient-to-br from-[#006E7F] to-[#005563] p-6 text-white shadow-[0_12px_44px_rgba(24,24,24,0.07)] transition hover:-translate-y-1 hover:border-[#E6A445]/40 hover:shadow-[0_18px_52px_rgba(24,24,24,0.09)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+              className="group relative overflow-hidden bg-mansion-navy p-6 text-white transition hover:bg-mansion-navy-light"
             >
-              <div>
-                <CalculatorIcon className="mb-4 h-10 w-10 text-[#E6A445]" aria-hidden="true" />
-                <h3 className="mb-2 text-xl font-semibold text-white">Exchange Cost Estimator</h3>
-                <p className="text-sm text-white/90">
-                  Estimate qualified intermediary fees, escrow costs, title insurance, and
-                  recording fees.
-                </p>
-              </div>
-              <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white">
+              <CalculatorIcon className="mb-4 h-10 w-10 text-mansion-gold" aria-hidden="true" />
+              <h3 className="mb-2 font-serif text-xl text-white">Exchange Cost Estimator</h3>
+              <p className="text-sm text-white/80">
+                Estimate qualified intermediary fees, escrow costs, title insurance, and
+                recording fees.
+              </p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold-light">
                 Use Calculator
                 <ArrowRightIcon
                   className="h-4 w-4 transition group-hover:translate-x-1"
@@ -692,19 +715,17 @@ export default function Page() {
             </Link>
             <Link
               href="/tools/identification-rules-checker"
-              className="group flex h-full flex-col justify-between rounded-2xl border border-white/70 bg-gradient-to-br from-[#006E7F] to-[#005563] p-6 text-white shadow-[0_12px_44px_rgba(24,24,24,0.07)] transition hover:-translate-y-1 hover:border-[#E6A445]/40 hover:shadow-[0_18px_52px_rgba(24,24,24,0.09)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+              className="group relative overflow-hidden bg-mansion-navy p-6 text-white transition hover:bg-mansion-navy-light"
             >
-              <div>
-                <ShieldCheckIcon className="mb-4 h-10 w-10 text-[#E6A445]" aria-hidden="true" />
-                <h3 className="mb-2 text-xl font-semibold text-white">
-                  Identification Rules Checker
-                </h3>
-                <p className="text-sm text-white/90">
-                  Validate your identification against the three property, two hundred percent, or
-                  ninety five percent rules.
-                </p>
-              </div>
-              <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-white">
+              <ShieldCheckIcon className="mb-4 h-10 w-10 text-mansion-gold" aria-hidden="true" />
+              <h3 className="mb-2 font-serif text-xl text-white">
+                Identification Rules Checker
+              </h3>
+              <p className="text-sm text-white/80">
+                Validate your identification against the three property, two hundred percent, or
+                ninety five percent rules.
+              </p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold-light">
                 Use Checker
                 <ArrowRightIcon
                   className="h-4 w-4 transition group-hover:translate-x-1"
@@ -713,10 +734,10 @@ export default function Page() {
               </span>
             </Link>
           </div>
-          <div className="flex justify-center">
+          <div className="mt-8 flex justify-center">
             <Link
               href="/tools"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-mansion-gold hover:text-mansion-gold-dark"
             >
               View all tools
               <ArrowRightIcon className="h-4 w-4" aria-hidden="true" />
@@ -724,52 +745,55 @@ export default function Page() {
           </div>
         </section>
 
-        <section  className="space-y-8">
-          <h2 className="text-3xl text-[#2A2A2A] sm:text-4xl">
+        {/* FAQ Section - Clean editorial style */}
+        <section className="border-b border-gray-200 py-16">
+          <p className="section-label mb-3">FAQ</p>
+          <h2 className="font-serif text-3xl text-mansion-charcoal sm:text-4xl">
             Frequently Asked Questions.
           </h2>
-          <div className="space-y-4">
+          <div className="mt-10 divide-y divide-gray-200">
             {faqs.map((faq, index) => (
               <details
                 key={faq.question}
-                className="group rounded-2xl border border-white/70 bg-white/80 p-6 shadow-[0_12px_40px_rgba(24,24,24,0.06)] transition focus-within:border-[#E6A445]/40"
+                className="group py-6"
               >
-                <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg text-[#2A2A2A]">
-                  <span>
-                    {index + 1 < 10 ? `0${index + 1}` : index + 1}. {faq.question}
+                <summary className="flex cursor-pointer items-center justify-between gap-4 text-lg text-mansion-charcoal">
+                  <span className="font-serif">
+                    {faq.question}
                   </span>
-                  <ArrowRightIcon
-                    className="h-5 w-5 text-[#006E7F] transition group-open:rotate-90"
-                    aria-hidden="true"
-                  />
+                  <span className="flex h-8 w-8 flex-none items-center justify-center border border-gray-300 text-mansion-gold transition group-open:rotate-45 group-open:border-mansion-gold">
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" /></svg>
+                  </span>
                 </summary>
-                <p className="mt-4 text-sm text-[#2A2A2A]/75">{faq.answer}</p>
+                <p className="mt-4 pr-12 text-sm leading-relaxed text-mansion-charcoal/70">{faq.answer}</p>
               </details>
             ))}
           </div>
         </section>
 
-        <section id="contact-form" className="mx-auto max-w-4xl">
-          <LeadForm />
+        {/* Lead Form Section */}
+        <section id="contact-form" className="py-16">
+          <div className="mx-auto max-w-4xl">
+            <p className="section-label mb-3 text-center">Get Started</p>
+            <LeadForm />
+          </div>
         </section>
 
-        <footer
-          
-          className="space-y-10 rounded-3xl border border-white/70 bg-white/80 p-10 shadow-[0_32px_120px_rgba(24,24,24,0.07)]"
-        >
+        {/* Contact Info Section - Before main footer */}
+        <section className="border-t border-gray-200 py-16">
           <div className="grid gap-8 lg:grid-cols-4">
-            <div className="space-y-4 lg:col-span-2">
-              <h2 className="text-2xl text-[#2A2A2A]">1031 Exchange of Phoenix</h2>
-              <p className="text-sm text-[#2A2A2A]/75">
+            <div className="lg:col-span-2">
+              <h2 className="font-serif text-2xl text-mansion-charcoal">1031 Exchange of Phoenix</h2>
+              <p className="mt-4 text-sm text-mansion-charcoal/70">
                 Precision guidance for Arizona investors seeking to preserve
                 equity and stay aligned with IRS requirements.
               </p>
-              <div className="space-y-2 text-sm text-[#2A2A2A]/80">
+              <div className="mt-6 space-y-2 text-sm text-mansion-charcoal/80">
                 <p>
                   Phone:{" "}
                   <Link
                     href={`tel:${PHONE_NUMBER_URI}`}
-                    className="font-medium text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                    className="font-medium text-mansion-gold hover:text-mansion-gold-dark"
                   >
                     {PHONE_NUMBER}
                   </Link>
@@ -778,7 +802,7 @@ export default function Page() {
                   Email:{" "}
                   <Link
                     href={`mailto:${SUPPORT_EMAIL}`}
-                    className="font-medium text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                    className="font-medium text-mansion-gold hover:text-mansion-gold-dark"
                   >
                     {SUPPORT_EMAIL}
                   </Link>
@@ -786,27 +810,27 @@ export default function Page() {
                 <p>Hours: {OFFICE_HOURS}</p>
               </div>
               {HAS_STAFFED_OFFICE ? (
-                <div className="rounded-2xl border border-[#2A2A2A]/10 bg-[#F5F3EF] p-4 text-sm text-[#2A2A2A]/80">
-                  <p className="font-semibold text-[#2A2A2A]">
+                <div className="mt-6 border border-gray-200 bg-gray-50 p-4 text-sm text-mansion-charcoal/80">
+                  <p className="font-semibold text-mansion-charcoal">
                     Phoenix Office
                   </p>
                   <p>{OFFICE_ADDRESS_LINE_1}</p>
                   <p>{OFFICE_ADDRESS_LINE_2}</p>
                 </div>
               ) : (
-                <p className="rounded-2xl border border-[#2A2A2A]/10 bg-[#F5F3EF] p-4 text-sm text-[#2A2A2A]/80">
+                <p className="mt-6 border border-gray-200 bg-gray-50 p-4 text-sm text-mansion-charcoal/80">
                   Statewide advisory support conducted through scheduled
                   consultations and virtual meetings.
                 </p>
               )}
             </div>
-            <div className="space-y-3">
-              <h3 className="text-lg text-[#2A2A2A]">Quick Links</h3>
-              <ul className="space-y-2 text-sm text-[#2A2A2A]/75">
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-mansion-charcoal/50">Quick Links</h3>
+              <ul className="mt-4 space-y-2 text-sm text-mansion-charcoal/70">
                 <li>
                   <Link
                     href="/services"
-                    className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                    className="hover:text-mansion-gold"
                   >
                     Services
                   </Link>
@@ -814,7 +838,7 @@ export default function Page() {
                 <li>
                   <Link
                     href="/property-types"
-                    className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                    className="hover:text-mansion-gold"
                   >
                     Property Types
                   </Link>
@@ -822,7 +846,7 @@ export default function Page() {
                 <li>
                   <Link
                     href="/resources"
-                    className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                    className="hover:text-mansion-gold"
                   >
                     Resources
                   </Link>
@@ -830,21 +854,21 @@ export default function Page() {
                 <li>
                   <Link
                     href="/locations"
-                    className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                    className="hover:text-mansion-gold"
                   >
                     Locations
                   </Link>
                 </li>
               </ul>
             </div>
-            <div className="space-y-3">
-              <h3 className="text-lg text-[#2A2A2A]">Service Areas</h3>
-              <ul className="space-y-2 text-sm text-[#2A2A2A]/75">
+            <div>
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-mansion-charcoal/50">Service Areas</h3>
+              <ul className="mt-4 space-y-2 text-sm text-mansion-charcoal/70">
                 {footerLocations.map((location) => (
                   <li key={location.slug}>
                     <Link
                       href={`/locations/${location.slug}`}
-                      className="hover:text-[#006E7F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                      className="hover:text-mansion-gold"
                     >
                       {location.name}
                     </Link>
@@ -853,28 +877,28 @@ export default function Page() {
               </ul>
             </div>
           </div>
-          <div className="space-y-3 border-t border-[#2A2A2A]/10 pt-6 text-xs text-[#2A2A2A]/70">
+          <div className="mt-10 border-t border-gray-200 pt-6 text-xs text-mansion-charcoal/60">
             <p>
               Compliance resources:{" "}
               <Link
                 href="https://www.irs.gov/forms-pubs/about-form-8824"
-                className="text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                className="text-mansion-gold hover:text-mansion-gold-dark"
               >
                 IRS Form 8824
               </Link>{" "}
-              |
+              |{" "}
               <Link
                 href="https://www.irs.gov/tax-professionals/section-1031-like-kind-exchanges"
-                className="ml-2 text-[#006E7F] underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#006E7F]"
+                className="text-mansion-gold hover:text-mansion-gold-dark"
               >
                 IRS Like-Kind Exchanges
               </Link>
             </p>
-            <p>
-              © 2025 1031 Exchange of Phoenix. All rights reserved.
-            </p>
           </div>
-        </footer>
+        </section>
+
+        {/* Close content container */}
+        </div>
       </main>
       <script
         type="application/ld+json"
