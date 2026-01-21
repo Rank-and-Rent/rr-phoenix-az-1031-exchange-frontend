@@ -41,15 +41,26 @@ export function slugify(value: string): string {
     .replace(/-+/g, "-");
 }
 
-// Image helper functions - returns image paths based on naming convention
-// Files are named: 1031-exchange-{slug}-{stateAbbr}.{ext} for locations
-// Files are named: 1031-exchange-{slug}-phoenix-az.{ext} for property types
-// Next.js Image component will handle missing images gracefully
+// Image helper functions - returns image paths based on actual files in public/locations
+// Location files: 1031-exchange-{slug}-az.{jpg|webp}
+// Property type files: 1031-exchange-{slug}-phoenix-az.{ext}
+
+/** Maps location slug to exact hero image path. Files use -az suffix and mixed .jpg/.webp. */
+const LOCATION_IMAGE_MAP: Record<string, string> = {
+  phoenix: "/locations/1031-exchange-phoenix-az.webp",
+  scottsdale: "/locations/1031-exchange-scottsdale-az.jpg",
+  tempe: "/locations/1031-exchange-tempe-az.webp",
+  mesa: "/locations/1031-exchange-mesa-az.jpg",
+  chandler: "/locations/1031-exchange-chandler-az.jpg",
+  gilbert: "/locations/1031-exchange-gilbert-az.jpg",
+  glendale: "/locations/1031-exchange-glendale-az.jpg",
+  "paradise-valley": "/locations/1031-exchange-north-scottsdale-az.jpg",
+  goodyear: "/locations/1031-exchange-goodyear-az.webp",
+  "queen-creek": "/locations/1031-exchange-gilbert-az.jpg",
+};
 
 export function getLocationImageSrc(slug: string): string {
-  const baseName = `1031-exchange-${slug}`;
-  // Try common extensions, Next.js will handle 404s
-  return `/locations/${baseName}.webp`;
+  return LOCATION_IMAGE_MAP[slug] ?? `/locations/1031-exchange-${slug}-az.jpg`;
 }
 
 export function getPropertyTypeImageSrc(slug: string): string {
