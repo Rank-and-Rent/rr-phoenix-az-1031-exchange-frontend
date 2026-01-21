@@ -60,7 +60,7 @@ export function HomepageServiceArea({ locations }: HomepageServiceAreaProps) {
             >
               {/* Background image */}
               <Image
-                src={location.image || `/locations/1031-exchange-${location.slug}.jpg`}
+                src={`/locations/1031-exchange-${location.slug}.jpg`}
                 alt={location.name}
                 fill
                 className="object-cover transition duration-500 group-hover:scale-105"
