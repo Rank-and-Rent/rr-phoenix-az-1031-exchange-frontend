@@ -86,6 +86,21 @@ export const propertyTypesData: PropertyTypeItem[] = [
     name: "Mixed Use",
     route: "/property-types/mixed-use",
   },
+  {
+    slug: "industrial-warehouse",
+    name: "Industrial & Warehouse",
+    route: "/property-types/industrial-warehouse",
+  },
+  {
+    slug: "office",
+    name: "Office Buildings",
+    route: "/property-types/office",
+  },
+  {
+    slug: "dst-investments",
+    name: "DST Investments",
+    route: "/property-types/dst-investments",
+  },
 ];
 
 

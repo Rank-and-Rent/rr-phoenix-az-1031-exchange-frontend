@@ -5,6 +5,7 @@ import { locationsBatch01 } from "@/data/batches/locations/batch-01";
 import { locationsBatch02 } from "@/data/batches/locations/batch-02";
 import { locationsBatch03 } from "@/data/batches/locations/batch-03";
 import { propertyTypesBatch01 } from "@/data/batches/property-types/batch-01";
+import { propertyTypesBatch02 } from "@/data/batches/property-types/batch-02";
 import type { Service } from "./services";
 import type { Location } from "./locations";
 
@@ -22,6 +23,7 @@ const allLocationBatches = {
 
 const allPropertyTypeBatches = {
   ...propertyTypesBatch01,
+  ...propertyTypesBatch02,
 };
 
 export function getServiceBatchData(slug: string) {

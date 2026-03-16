@@ -63,9 +63,14 @@ export function getLocationImageSrc(slug: string): string {
   return LOCATION_IMAGE_MAP[slug] ?? `/locations/1031-exchange-${slug}-az.jpg`;
 }
 
+/** Maps property-type slug to exact hero image. Use when filename does not match 1031-exchange-{slug}-phoenix-az.jpg */
+const PROPERTY_TYPE_IMAGE_MAP: Record<string, string> = {
+  "industrial-warehouse": "/property-types/1031-exchange-industrial-phoenix-az.jpg",
+  office: "/property-types/1031-exchange-medical-office-phoenix-az.jpg",
+  "dst-investments": "/property-types/1031-exchange-nnn-phoenix-az.jpg",
+};
+
 export function getPropertyTypeImageSrc(slug: string): string {
-  const baseName = `1031-exchange-${slug}-phoenix-az`;
-  // Try common extensions, Next.js will handle 404s
-  return `/property-types/${baseName}.jpg`;
+  return PROPERTY_TYPE_IMAGE_MAP[slug] ?? `/property-types/1031-exchange-${slug}-phoenix-az.jpg`;
 }
 
